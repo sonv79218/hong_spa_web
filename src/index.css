@@ -1,0 +1,464 @@
+@import "tailwindcss";
+
+@theme {
+  /* Spa color palette - Beige, Brown, Light Cream */
+  --color-sage: #3D4A3E;
+  --color-sage-light: #5A6A5D;
+  --color-sage-dark: #2D3A2E;
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F0EBE3;
+  --color-terracotta: #C4A77D;
+  --color-terracotta-light: #D4B88D;
+  --color-brown: #6B5B4F;
+  --color-brown-light: #8B7B6F;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background-color: #FAF7F2;
+    color: #3D4A3E;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* ========== Custom Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4A77D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3D4A3E;
+}
+
+/* ========== Selection Color ========== */
+::selection {
+  background-color: #C4A77D;
+  color: white;
+}
+
+/* ========== Link Underline Animation ========== */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C4A77D, #3D4A3E);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ========== Gradient Text ========== */
+.gradient-text {
+  background: linear-gradient(135deg, #3D4A3E 0%, #C4A77D 50%, #3D4A3E 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ========== Floating Animation ========== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========== Pulse Ring Animation ========== */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: #C4A77D;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ========== Shimmer Effect ========== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ========== Card Hover Effects ========== */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(61, 74, 62, 0.1),
+    0 8px 16px rgba(61, 74, 62, 0.08);
+}
+
+/* ========== Image Zoom on Hover ========== */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* ========== Button Glow Effect ========== */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-glow:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ========== Border Gradient Animation ========== */
+.border-gradient {
+  position: relative;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #C4A77D, #3D4A3E, #C4A77D, #3D4A3E);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: border-gradient-rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.border-gradient:hover::before {
+  opacity: 1;
+}
+
+@keyframes border-gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== Text Reveal Animation ========== */
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.text-reveal {
+  animation: text-reveal 0.8s ease forwards;
+}
+
+/* ========== Parallax Background ========== */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ========== Glass Effect ========== */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ========== Decorative Dots Pattern ========== */
+.dots-pattern {
+  background-image: radial-gradient(#C4A77D 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ========== Decorative Lines Pattern ========== */
+.lines-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(196, 167, 125, 0.05) 10px,
+    rgba(196, 167, 125, 0.05) 20px
+  );
+}
+
+/* ========== Loading Skeleton ========== */
+@keyframes skeleton-loading {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #F0EBE3 0px,
+    #FAF7F2 40px,
+    #F0EBE3 80px
+  );
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+/* ========== Ripple Effect ========== */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+}
+
+/* ========== Blob Animation ========== */
+@keyframes blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+}
+
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
+}
+
+/* ========== Fade In Up Animation ========== */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease forwards;
+}
+
+/* ========== Shine Sweep on Hover ========== */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left 0.5s ease;
+}
+
+.shine-sweep:hover::after {
+  left: 150%;
+}
+
+/* ========== Progress Bar Animation ========== */
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+
+.progress-bar {
+  animation: progress-fill 1.5s ease-out forwards;
+}
+
+/* ========== Badge Pulse ========== */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* ========== Stagger Animation Helper ========== */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ========== Cursor Glow Effect ========== */
+.cursor-glow {
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
+}
+
+.cursor-glow:hover {
+  text-shadow: 0 0 10px rgba(196, 167, 125, 0.5);
+}
+
+/* ========== Underline Draw Effect ========== */
+.underline-draw {
+  position: relative;
+}
+
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #C4A77D;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.underline-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ========== Icon Bounce on Hover ========== */
+.icon-bounce:hover svg {
+  animation: icon-bounce 0.5s ease;
+}
+
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ========== Section Divider ========== */
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #C4A77D 20%,
+    #C4A77D 80%,
+    transparent
+  );
+}
+
+.section-divider::before {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #FAF7F2;
+  padding: 0 20px;
+  color: #C4A77D;
+  font-size: 12px;
+}
