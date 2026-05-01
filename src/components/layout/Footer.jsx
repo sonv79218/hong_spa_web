@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Phone, MessageCircle, ArrowRight, Star, Shield, Heart } from 'lucide-react';
 
-const CTASection = () => {
+const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -120,4 +120,4 @@ const CTASection = () => {
   );
 };
 
-export default CTASection;
+export default Footer;
