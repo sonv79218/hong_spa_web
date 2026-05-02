@@ -3,41 +3,53 @@ import { NavLink, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setIsScrolled(window.scrollY > 50);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   const navLinks = [
     { path: "/", label: "Trang chủ" },
+    { path: "/promotions", label: "Khuyến mãi" },
     { path: "/services", label: "Dịch vụ" },
     { path: "/menu", label: "Menu" },
     { path: "/contact", label: "Liên hệ" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-cream/95 backdrop-blur-md shadow-lg shadow-sage/5 py-2"
-          : "bg-transparent py-4"
-      }`}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream shadow-lg shadow-sage/5 py-3"
+      // className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      //   isScrolled
+      //     ? "bg-cream/95 backdrop-blur-md shadow-lg shadow-sage/5 py-2"
+      //     : "bg-transparent py-4"
+      // }`}
+    
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link
-            to="/"
-            className="font-serif text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
-          >
-            Hong Spa
-          </Link>
+
+          {location.pathname === "/" ? (
+  <a
+    href="#heroSection"
+    className="font-serif text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
+  >
+    Hong Spa
+  </a>
+) : (
+  <Link
+    to="/"
+    className="font-serif text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
+  >
+    Hong Spa
+  </Link>
+)}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -51,13 +63,15 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            <NavLink
-              to="/contact"
-              className="btn-glow bg-sage text-cream px-6 py-2.5 rounded-full hover:bg-sage-light transition-all duration-300 font-medium shine-sweep"
-            >
-              Đặt lịch ngay
-            </NavLink>
+            <a
+  href="#contact"
+  className="btn-glow bg-sage text-cream px-6 py-2.5 rounded-full hover:bg-sage-light transition-all duration-300 font-medium shine-sweep"
+>
+  Đặt lịch ngay
+</a>
+            
           </div>
+          
 
           {/* Mobile Menu Button */}
           <button
@@ -86,14 +100,13 @@ const Navbar = () => {
                 {link.label}
               </NavLink>
             ))}
-
-            <NavLink
-              to="/contact"
-              className="block mx-4 mt-4 bg-sage text-cream px-6 py-3 rounded-full text-center hover:bg-sage-light transition-colors duration-300 font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Đặt lịch ngay
-            </NavLink>
+            <a
+  href="#contact"
+  onClick={() => setIsMobileMenuOpen(false)}
+  className="block mx-4 mt-4 bg-sage text-cream px-6 py-3 rounded-full text-center hover:bg-sage-light transition-colors duration-300 font-medium"
+>
+  Đặt lịch ngay
+</a>
           </div>
         </div>
       </div>

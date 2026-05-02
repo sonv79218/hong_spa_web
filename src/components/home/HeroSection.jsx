@@ -1,38 +1,18 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
-
-const slides = [
-  {
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&h=1080&fit=crop",
-    title: "COMBO SẠCH SÂU",
-    subtitle: "Kết hợp giữa sạch sâu và tái tạo",
-    description: "Trải nghiệm liệu trình chăm sóc da chuyên sâu với công nghệ hiện đại",
-    badge: "Hot 2024",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1920&h=1080&fit=crop",
-    title: "PEEL TÁO Ý",
-    subtitle: "Diego Dalla Palma Professional",
-    description: "Loại bỏ tế bào sừng, kích thích tái tạo da sáng đều màu",
-    badge: "Premium",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1920&h=1080&fit=crop",
-    title: "CSDA ĐẶC BIỆT",
-    subtitle: "Nâng cơ trẻ hóa",
-    description: "Làm sạch sâu, xả stress, giúp da hồng hào rạng rỡ",
-    badge: "Special",
-  },
-  {
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&h=1080&fit=crop",
-    title: "KHÔNG GIAN SANG TRỌNG",
-    subtitle: "Thư giãn & Đẳng cấp",
-    description: "Không gian spa hiện đại, thoải mái và riêng tư",
-    badge: "VIP",
-  },
-];
-
+// import { heroSlides } from "../../data/heroSlides";
+import { offers } from "../../data/offers";
+import { Link } from "react-router-dom";
+const slides = offers.map((item) => ({
+  id: item.id,
+  title: item.title,
+  subtitle: item.subtitle,
+  description: item.description,
+  image: item.image,
+  badge: item.badge,
+}));
+// const slides = heroSlides;
 // Slow, luxurious image slide variants
 const slideVariants = {
   enter: (direction) => ({
@@ -153,6 +133,7 @@ const HeroSection = () => {
 
   return (
     <section 
+      id="heroSection"
       ref={containerRef}
       className="relative w-full h-[55vh] min-h-[380px] sm:h-[60vh] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] overflow-hidden select-none"
       style={{ WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale' }}
@@ -282,11 +263,31 @@ const HeroSection = () => {
                   className="group relative inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-terracotta text-white rounded-full font-medium text-sm md:text-base shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-500"
                 >
                   <span className="relative z-10">Đặt lịch</span>
+                  
                   <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
+<Link
+  to={`/promotions#offer-${currentSlide.id}`}
+  className="group relative inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-terracotta text-white rounded-full font-medium text-sm md:text-base shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-500"
+>
+  <span className="relative z-10">Đặt ngay</span>
 
+  <svg
+    className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M17 8l4 4m0 0l-4 4m4-4H3"
+    />
+  </svg>
+</Link>
                 <a
                   href="#services"
                   className="group inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-full font-medium text-sm md:text-base hover:bg-white/20 hover:border-white/50 transition-all duration-500"

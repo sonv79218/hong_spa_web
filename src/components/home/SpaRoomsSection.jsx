@@ -142,21 +142,6 @@ const SpaRoomsSection = () => {
             Từng khu vực trị liệu được bố trí sạch sẽ, thoáng mát và tạo cảm giác
             thoải mái trong suốt quá trình trải nghiệm.
           </p>
-          
-          {/* CTA Button */}
-          <motion.a
-            href="#booking"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-sage text-white rounded-full font-medium hover:bg-terracotta transition-colors duration-300 group"
-          >
-            <span>Đặt lịch ngay</span>
-            <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </motion.a>
         </motion.div>
       </div>
     </section>

@@ -4,57 +4,58 @@ import { useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Sparkles, Droplets, Heart, Scissors, Flame, Wind, Eye } from 'lucide-react';
 import img4 from "../../assets/images/space/Screenshot_45.png";
-
-const services = [
-  {
-    title: "Chăm sóc da mặt",
-    desc: "Làm sạch sâu, cấp ẩm và phục hồi làn da khỏe mạnh.",
-    icon: Sparkles,
-    image: img4,
-  },
-  {
-    title: "Chemical Peel",
-    desc: "Tái tạo da, cải thiện thâm nám và bề mặt da.",
-    icon: Droplets,
-    image: img4,
-  },
-  {
-    title: "Massage Body",
-    desc: "Thư giãn toàn thân, giảm căng thẳng và đau nhức.",
-    icon: Heart,
-    image: img4,
-  },
-  {
-    title: "Massage cổ vai gáy",
-    desc: "Giảm đau mỏi do ngồi lâu, làm việc văn phòng.",
-    icon: Wind,
-    image: img4,
-  },
-  {
-    title: "Triệt lông",
-    desc: "Công nghệ an toàn, giúp da mịn màng lâu dài.",
-    icon: Scissors,
-    image: img4,
-  },
-  {
-    title: "Giảm béo",
-    desc: "Hỗ trợ giảm mỡ, cải thiện vóc dáng hiệu quả.",
-    icon: Flame,
-    image: img4,
-  },
-  {
-    title: "Gội đầu dưỡng sinh",
-    desc: "Thư giãn tinh thần, cải thiện tuần hoàn máu.",
-    icon: Wind,
-    image: img4,
-  },
-  {
-    title: "Nối mi",
-    desc: "Tạo đôi mắt cuốn hút, tự nhiên và bền đẹp.",
-    icon: Eye,
-    image: img4,
-  },
-];
+import { Link } from "react-router-dom";
+import { services } from "../../data/servicesData";
+// const services = [
+//   {
+//     title: "Chăm sóc da mặt",
+//     desc: "Làm sạch sâu, cấp ẩm và phục hồi làn da khỏe mạnh.",
+//     icon: Sparkles,
+//     image: img4,
+//   },
+//   {
+//     title: "Chemical Peel",
+//     desc: "Tái tạo da, cải thiện thâm nám và bề mặt da.",
+//     icon: Droplets,
+//     image: img4,
+//   },
+//   {
+//     title: "Massage Body",
+//     desc: "Thư giãn toàn thân, giảm căng thẳng và đau nhức.",
+//     icon: Heart,
+//     image: img4,
+//   },
+//   {
+//     title: "Massage cổ vai gáy",
+//     desc: "Giảm đau mỏi do ngồi lâu, làm việc văn phòng.",
+//     icon: Wind,
+//     image: img4,
+//   },
+//   {
+//     title: "Triệt lông",
+//     desc: "Công nghệ an toàn, giúp da mịn màng lâu dài.",
+//     icon: Scissors,
+//     image: img4,
+//   },
+//   {
+//     title: "Giảm béo",
+//     desc: "Hỗ trợ giảm mỡ, cải thiện vóc dáng hiệu quả.",
+//     icon: Flame,
+//     image: img4,
+//   },
+//   {
+//     title: "Gội đầu dưỡng sinh",
+//     desc: "Thư giãn tinh thần, cải thiện tuần hoàn máu.",
+//     icon: Wind,
+//     image: img4,
+//   },
+//   {
+//     title: "Nối mi",
+//     desc: "Tạo đôi mắt cuốn hút, tự nhiên và bền đẹp.",
+//     icon: Eye,
+//     image: img4,
+//   },
+// ];
 
 const ServiceSlideCard = ({ service, direction }) => {
   const Icon = service.icon;
@@ -102,10 +103,17 @@ const ServiceSlideCard = ({ service, direction }) => {
           </p>
           
           {/* CTA Button */}
-          <button className="mt-4 w-full py-3 px-6 bg-gradient-to-r from-terracotta/10 to-sage/10 hover:from-terracotta/20 hover:to-sage/20 rounded-xl text-terracotta font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2 group">
-            <span>Xem chi tiết</span>
-            <ChevronRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </button>
+  
+          <Link
+  to={`/services/${service.id}`}
+  className="mt-4 w-full py-3 px-6 bg-gradient-to-r from-terracotta/10 to-sage/10 hover:from-terracotta/20 hover:to-sage/20 rounded-xl text-terracotta font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2 group"
+>
+  <span>Xem chi tiết</span>
+  <ChevronRight
+    size={18}
+    className="transition-transform group-hover:translate-x-1"
+  />
+</Link>
         </div>
       </div>
     </motion.div>
@@ -149,7 +157,7 @@ const ServicePreview = () => {
 
   return (
     <section 
-      className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-cream to-cream relative overflow-hidden"
+      className="py-16 md:py-24 bg-cream relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
