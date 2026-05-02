@@ -258,16 +258,7 @@ const HeroSection = () => {
                 variants={itemVariants}
                 className="flex flex-wrap items-center gap-2 md:gap-4"
               >
-                <a
-                  href="#booking"
-                  className="group relative inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-terracotta text-white rounded-full font-medium text-sm md:text-base shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-500"
-                >
-                  <span className="relative z-10">Đặt lịch</span>
-                  
-                  <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+       
 <Link
   to={`/promotions#offer-${currentSlide.id}`}
   className="group relative inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-terracotta text-white rounded-full font-medium text-sm md:text-base shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-500"
