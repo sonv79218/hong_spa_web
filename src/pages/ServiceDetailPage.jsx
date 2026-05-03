@@ -49,7 +49,7 @@ const ServiceDetailPage = () => {
   }
 
   return (
-    <section className="min-h-screen bg-cream" style={{ WebkitFontSmoothing: 'antialiased' }}>
+    <section className="min-h-screen bg-cream pt-16" style={{ WebkitFontSmoothing: 'antialiased' }}>
       <Navbar />
 
       {/* Hero Section */}

@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Footer from "../components/layout/Footer";
 import Navbar from "../components/layout/Navbar";
-import { MapPin, Phone, Mail, Clock, Send, Check, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Check, MessageCircle, X, Loader2 } from "lucide-react";
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBPq53s2Kt2s7nOcgJcmS4CoGrc8S771cYMweKBykwBKcTopL9EYsynk7RKwekhXFo/exec";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +15,8 @@ const ContactPage = () => {
     message: "",
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
@@ -21,6 +24,16 @@ const ContactPage = () => {
   const isInfoInView = useInView(infoRef, { once: true, margin: "-80px" });
   const formRef = useRef(null);
   const isFormInView = useInView(formRef, { once: true, margin: "-80px" });
+
+  // Auto close modal after 4 seconds
+  useEffect(() => {
+    if (showSuccessModal) {
+      const timer = setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessModal]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -49,11 +62,30 @@ const ContactPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      setIsSubmitted(true);
+
+    // Prevent spam
+    if (loading) return;
+
+    if (!validateForm()) return;
+
+    setLoading(true);
+
+    const formDataToSend = new URLSearchParams();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("address", formData.address);
+    formDataToSend.append("message", formData.message);
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      // Reset form
       setFormData({
         name: "",
         phone: "",
@@ -61,10 +93,13 @@ const ContactPage = () => {
         address: "",
         message: "",
       });
-      
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+
+      // Show success modal
+      setShowSuccessModal(true);
+    } catch (err) {
+      console.error("Form submission error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,11 +112,15 @@ const ContactPage = () => {
     }
   };
 
+  const closeModal = () => {
+    setShowSuccessModal(false);
+  };
+
   const contactInfo = [
     {
       icon: Phone,
       label: "Điện thoại",
-      value: "093 836 1234",
+      value: "0392828888",
       sub: "(Hong Spa 1)",
     },
     {
@@ -93,7 +132,7 @@ const ContactPage = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "hongspa68@gmail.com",
+      value: "hongspa@gmail.com",
       sub: "",
     },
     {
@@ -105,7 +144,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-cream" style={{ WebkitFontSmoothing: 'antialiased' }}>
+    <section className="min-h-screen bg-cream pt-16" style={{ WebkitFontSmoothing: 'antialiased' }}>
       <Navbar />
 
       {/* Hero Section */}
@@ -227,22 +266,6 @@ const ContactPage = () => {
               </p>
             </div>
 
-            {/* Success Message */}
-            {isSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-sage/10 rounded-xl flex items-center gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-sage flex items-center justify-center flex-shrink-0">
-                  <Check size={16} className="text-white" />
-                </div>
-                <p className="text-sage/80 text-sm md:text-base">
-                  Cảm ơn bạn! Phản hồi của bạn đã được gửi thành công.
-                </p>
-              </motion.div>
-            )}
-
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
               {/* Name */}
@@ -256,7 +279,8 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Nhập họ và tên"
-                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.name ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40`}
+                  disabled={loading}
+                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.name ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={{ transform: 'translateZ(0)' }}
                 />
                 {errors.name && (
@@ -275,7 +299,8 @@ const ContactPage = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Nhập số điện thoại"
-                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.phone ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40`}
+                  disabled={loading}
+                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.phone ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={{ transform: 'translateZ(0)' }}
                 />
                 {errors.phone && (
@@ -294,7 +319,8 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Nhập email"
-                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.email ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40`}
+                  disabled={loading}
+                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.email ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={{ transform: 'translateZ(0)' }}
                 />
                 {errors.email && (
@@ -313,7 +339,8 @@ const ContactPage = () => {
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Nhập địa chỉ (tùy chọn)"
-                  className="w-full px-4 py-3 bg-sage/5 rounded-xl border-2 border-transparent focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40"
+                  disabled={loading}
+                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 border-transparent focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={{ transform: 'translateZ(0)' }}
                 />
               </div>
@@ -329,7 +356,8 @@ const ContactPage = () => {
                   onChange={handleChange}
                   rows="5"
                   placeholder="Nhập nội dung phản hồi"
-                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.message ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 resize-none`}
+                  disabled={loading}
+                  className={`w-full px-4 py-3 bg-sage/5 rounded-xl border-2 ${errors.message ? 'border-terracotta/50' : 'border-transparent'} focus:border-terracotta/30 focus:bg-white transition-all duration-300 outline-none text-sage placeholder:text-sage/40 resize-none ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={{ transform: 'translateZ(0)' }}
                 />
                 {errors.message && (
@@ -341,10 +369,20 @@ const ContactPage = () => {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-terracotta text-white rounded-full font-medium text-base md:text-lg shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-300"
+                  disabled={loading}
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-terracotta text-white rounded-full font-medium text-base md:text-lg shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:shadow-lg"
                 >
-                  <Send size={18} />
-                  <span>Gửi phản hồi</span>
+                  {loading ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      <span>Đang gửi...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      <span>Gửi phản hồi</span>
+                    </>
+                  )}
                 </button>
               </div>
             </form>
@@ -353,6 +391,80 @@ const ContactPage = () => {
       </div>
 
       <Footer />
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          >
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={closeModal}
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative bg-white rounded-2xl md:rounded-3xl p-8 md:p-10 max-w-sm w-full shadow-2xl text-center"
+            >
+              {/* Close button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-sage/10 flex items-center justify-center text-sage/60 hover:bg-sage/20 hover:text-sage transition-all duration-300"
+              >
+                <X size={18} />
+              </button>
+
+              {/* Success Icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                className="w-20 h-20 mx-auto mb-6 rounded-full bg-sage/10 flex items-center justify-center"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  <Check size={40} className="text-sage" strokeWidth={3} />
+                </motion.div>
+              </motion.div>
+
+              {/* Title */}
+              <h3 className="font-serif text-2xl md:text-3xl text-sage font-bold mb-3">
+                Gửi thành công
+              </h3>
+
+              {/* Message */}
+              <p className="text-sage/70 text-sm md:text-base mb-6 leading-relaxed">
+                Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm nhất.
+              </p>
+
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="w-full py-3 px-6 bg-terracotta text-white rounded-full font-medium text-base hover:bg-terracotta/90 transition-colors duration-300"
+              >
+                Đóng
+              </button>
+
+              {/* Auto close hint */}
+              <p className="text-sage/40 text-xs mt-4">
+                Tự động đóng sau 4 giây
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

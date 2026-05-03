@@ -150,7 +150,7 @@ const Footer = () => {
                     href={`tel:${phone}`}
                     className="text-white text-base hover:text-terracotta transition-colors"
                   >
-                    093 836 1234
+                    0392828888
                   </a>
                 </div>
               </div>
