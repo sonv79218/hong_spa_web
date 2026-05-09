@@ -7,6 +7,7 @@ import Contact from "../pages/Contact";
 import PromotionPage from "../pages/PromotionPage";
 import ServiceDetailPage from "../pages/ServiceDetailPage.jsx";
 import ScrollToTop from "../components/ScrollToTop";
+import LaserHairRemovalLanding from "../pages/LaserHairRemovalLanding";
 
 
 export default function AppRoutes() {
@@ -21,6 +22,7 @@ export default function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/promotions" element={<PromotionPage />} />
           <Route path="/services/:id" element={<ServiceDetailPage />} />
+          <Route path="/laser-hair-removal" element={<LaserHairRemovalLanding />} />
         </Route>
       </Routes>
     </BrowserRouter>
