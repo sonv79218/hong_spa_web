@@ -39,7 +39,6 @@ export default function TechnologySection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
 
-  // Responsive cards per view
   useEffect(() => {
     const updateCardsPerView = () => {
       const width = window.innerWidth;
@@ -57,7 +56,6 @@ export default function TechnologySection() {
     return () => window.removeEventListener('resize', updateCardsPerView);
   }, []);
 
-  // Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % technologyImages.length);
@@ -90,13 +88,13 @@ export default function TechnologySection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <Sparkles size={14} className="text-rose-500" />
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Công nghệ hiện đại</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <Sparkles size={14} className="text-sage" />
+            <span className="text-xs sm:text-sm font-medium text-sage">Công nghệ hiện đại</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Công nghệ triệt lông
-            <span className="text-rose-500"> tiên tiến nhất</span>
+            <span className="text-sage"> tiên tiến nhất</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Ứng dụng công nghệ diode laser từ Hàn Quốc, giúp hỗ trợ giảm lông mọc lại hiệu quả,
@@ -110,7 +108,7 @@ export default function TechnologySection() {
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-700 hover:bg-rose-500 hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-700 hover:bg-sage hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed border border-sage/10"
           >
             <ChevronLeft size={16} className="sm:text-lg lg:text-xl" />
           </button>
@@ -118,7 +116,7 @@ export default function TechnologySection() {
           <button
             onClick={nextSlide}
             disabled={currentIndex >= maxIndex}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-700 hover:bg-rose-500 hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 z-10 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center text-gray-700 hover:bg-sage hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed border border-sage/10"
           >
             <ChevronRight size={16} className="sm:text-lg lg:text-xl" />
           </button>
@@ -142,7 +140,7 @@ export default function TechnologySection() {
                       key={`${currentIndex}-${i}`}
                       className={`flex-shrink-0 ${cardsPerView === 1 ? 'w-full' : cardsPerView === 2 ? 'w-[calc(50%-0.5rem)]' : 'w-[calc(33.333%-1rem)]'}`}
                     >
-                      <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md sm:shadow-lg shadow-rose-100/50 hover:shadow-xl hover:shadow-rose-200/50 transition-all duration-300 group">
+                      <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg shadow-sage/5 hover:shadow-xl hover:shadow-sage/10 transition-all duration-300 group border border-sage/10">
                         {/* Image */}
                         <div className="relative h-36 sm:h-48 lg:h-56 overflow-hidden">
                           <img
@@ -178,7 +176,7 @@ export default function TechnologySection() {
                 onClick={() => goToSlide(index * cardsPerView)}
                 className={`transition-all duration-300 rounded-full ${
                   Math.floor(currentIndex / cardsPerView) === index
-                    ? 'w-5 h-2 sm:w-6 sm:h-2.5 bg-rose-500'
+                    ? 'w-5 h-2 sm:w-6 sm:h-2.5 bg-sage'
                     : 'w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

@@ -88,7 +88,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-rose-50 to-white overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-cream/50 to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -98,13 +98,13 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <Star size={14} className="text-rose-500 fill-rose-500" />
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Đánh giá khách hàng</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <Star size={14} className="text-sage fill-sage" />
+            <span className="text-xs sm:text-sm font-medium text-sage">Đánh giá khách hàng</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Khách hàng
-            <span className="text-rose-500"> nói gì?</span>
+            <span className="text-sage"> nói gì?</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Hơn 5000+ khách hàng đã trải nghiệm và hài lòng
@@ -131,9 +131,9 @@ export default function TestimonialsSection() {
                       key={`${currentIndex}-${i}`}
                       className={`flex-shrink-0 ${cardsPerView === 1 ? 'w-full' : cardsPerView === 2 ? 'w-[calc(50%-0.5rem)]' : 'w-[calc(33.333%-1rem)]'}`}
                     >
-                      <div className="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 shadow-md sm:shadow-lg shadow-rose-100/50 hover:shadow-xl hover:shadow-rose-200/50 transition-all duration-300 h-full flex flex-col">
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center mb-3 sm:mb-4">
-                          <Quote size={14} className="sm:text-lg text-rose-500" />
+                      <div className="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 shadow-lg shadow-sage/5 hover:shadow-xl hover:shadow-sage/10 transition-all duration-300 h-full flex flex-col border border-sage/10">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sage/10 flex items-center justify-center mb-3 sm:mb-4">
+                          <Quote size={14} className="sm:text-lg text-sage" />
                         </div>
 
                         <div className="flex items-center gap-1 mb-2 sm:mb-3">
@@ -141,7 +141,7 @@ export default function TestimonialsSection() {
                             <Star
                               key={starIndex}
                               size={12}
-                              className="sm:text-base text-rose-400 fill-rose-400"
+                              className="sm:text-base text-sage fill-sage"
                             />
                           ))}
                         </div>
@@ -150,15 +150,15 @@ export default function TestimonialsSection() {
                           "{item.review}"
                         </p>
 
-                        <div className="inline-block bg-rose-50 text-rose-600 text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full mb-3 sm:mb-4 w-fit">
+                        <div className="inline-block bg-sage/10 text-sage px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs mb-3 sm:mb-4 w-fit">
                           {item.service}
                         </div>
 
-                        <div className="flex items-center gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-rose-100">
+                        <div className="flex items-center gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-sage/10">
                           <img
                             src={item.avatar}
                             alt={item.name}
-                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-rose-100"
+                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-sage/20"
                           />
                           <div>
                             <p className="font-semibold text-gray-800 text-xs sm:text-sm">{item.name}</p>
@@ -181,7 +181,7 @@ export default function TestimonialsSection() {
                 onClick={() => goToSlide(index * cardsPerView)}
                 className={`transition-all duration-300 rounded-full ${
                   Math.floor(currentIndex / cardsPerView) === index
-                    ? 'w-5 h-2 sm:w-6 sm:h-2.5 bg-rose-500'
+                    ? 'w-5 h-2 sm:w-6 sm:h-2.5 bg-sage'
                     : 'w-2 h-2 sm:w-2.5 sm:h-2.5 bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}

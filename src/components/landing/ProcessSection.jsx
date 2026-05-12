@@ -60,7 +60,7 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-rose-50">
+    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-cream/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -70,13 +70,13 @@ export default function ProcessSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <span className="text-rose-500 font-semibold text-sm sm:text-base">4</span>
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Bước đơn giản</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <span className="text-sage font-semibold text-sm sm:text-base">4</span>
+            <span className="text-xs sm:text-sm font-medium text-sage">Bước đơn giản</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Quy trình
-            <span className="text-rose-500"> chuyên nghiệp</span>
+            <span className="text-sage"> chuyên nghiệp</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Chỉ 4 bước đơn giản để sở hữu làn da mịn màng
@@ -99,11 +99,11 @@ export default function ProcessSection() {
                 >
                   {/* Connector line */}
                   {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-14 left-[calc(50%+36px)] w-[calc(100%-72px)] h-0.5 bg-gradient-to-r from-rose-300 to-pink-200 z-0" />
+                    <div className="hidden lg:block absolute top-14 left-[calc(50%+36px)] w-[calc(100%-72px)] h-0.5 bg-gradient-to-r from-sage/30 to-sage/10 z-0" />
                   )}
 
-                  <div className="relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-md sm:shadow-lg shadow-rose-100/50 hover:shadow-xl hover:shadow-rose-200/50 transition-all duration-300 group">
-                    <div className="absolute top-3 left-3 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg">
+                  <div className="relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-sage/5 hover:shadow-xl hover:shadow-sage/10 transition-all duration-300 group border border-sage/10">
+                    <div className="absolute top-3 left-3 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-sage to-sage/80 flex items-center justify-center shadow-lg">
                       <span className="text-white font-bold text-base sm:text-lg">{step.step}</span>
                     </div>
 
@@ -118,10 +118,10 @@ export default function ProcessSection() {
 
                     <div className="p-4 sm:p-5">
                       <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
-                        <Icon size={16} className="sm:text-lg text-rose-500" />
-                        <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
+                        <Icon size={16} className="sm:text-lg text-sage" />
+                        <h2 className="font-semibold text-gray-800 text-sm sm:text-base">
                           {step.title}
-                        </h3>
+                        </h2>
                       </div>
                       <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
                         {step.desc}
@@ -143,9 +143,9 @@ export default function ProcessSection() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-rose-100/50"
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-sage/5 border border-sage/10"
                 >
-                  <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center shadow-lg">
+                  <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-gradient-to-br from-sage to-sage/80 flex items-center justify-center shadow-lg">
                     <span className="text-white font-bold text-lg">{steps[currentIndex].step}</span>
                   </div>
 
@@ -162,11 +162,11 @@ export default function ProcessSection() {
                     <div className="flex items-center gap-3 mb-2">
                       {(() => {
                         const Icon = steps[currentIndex].icon;
-                        return <Icon size={18} className="text-rose-500" />;
+                        return <Icon size={18} className="text-sage" />;
                       })()}
-                      <h3 className="font-semibold text-gray-800 text-base">
+                      <h2 className="font-semibold text-gray-800 text-base">
                         {steps[currentIndex].title}
-                      </h3>
+                      </h2>
                     </div>
                     <p className="text-gray-500 text-sm leading-relaxed">
                       {steps[currentIndex].desc}
@@ -184,7 +184,7 @@ export default function ProcessSection() {
                   onClick={() => setCurrentIndex(index)}
                   className={`transition-all duration-300 rounded-full ${
                     currentIndex === index
-                      ? 'w-6 h-2 bg-rose-500'
+                      ? 'w-6 h-2 bg-sage'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to step ${index + 1}`}
@@ -208,7 +208,7 @@ export default function ProcessSection() {
         >
           <button
             onClick={scrollToContact}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg shadow-rose-300/50 hover:shadow-xl hover:shadow-rose-400/50 transition-all duration-300 hover:-translate-y-1"
+            className="inline-flex items-center gap-2 bg-sage text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg hover:bg-sage/90 transition-all duration-300"
           >
             <span>Đăng ký tư vấn ngay</span>
             <span className="text-lg sm:text-xl">→</span>

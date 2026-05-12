@@ -53,13 +53,13 @@ export default function FAQSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <HelpCircle size={14} className="text-rose-500" />
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Giải đáp thắc mắc</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <HelpCircle size={14} className="text-sage" />
+            <span className="text-xs sm:text-sm font-medium text-sage">Giải đáp thắc mắc</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Câu hỏi
-            <span className="text-rose-500"> thường gặp</span>
+            <span className="text-sage"> thường gặp</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Những câu hỏi phổ biến nhất về dịch vụ triệt lông laser
@@ -75,10 +75,10 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className={`bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${
+              className={`bg-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 border border-sage/10 ${
                 openId === faq.id 
-                  ? 'shadow-lg shadow-rose-200/50 ring-2 ring-rose-200' 
-                  : 'shadow-md shadow-gray-100 hover:shadow-lg hover:shadow-rose-100/30'
+                  ? 'shadow-lg shadow-sage/10 ring-2 ring-sage/20' 
+                  : 'shadow-md shadow-sage/5 hover:shadow-lg hover:shadow-sage/10'
               }`}
             >
               {/* Question */}
@@ -94,8 +94,8 @@ export default function FAQSection() {
                   transition={{ duration: 0.3 }}
                   className={`flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
                     openId === faq.id 
-                      ? 'bg-rose-500 text-white' 
-                      : 'bg-rose-100 text-rose-500'
+                      ? 'bg-sage text-white' 
+                      : 'bg-sage/10 text-sage'
                   }`}
                 >
                   <ChevronDown size={16} className="sm:text-lg" />
@@ -113,7 +113,7 @@ export default function FAQSection() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 sm:px-5 lg:px-6 pb-4 sm:pb-5 lg:pb-6 pt-0">
-                      <div className="w-full h-px bg-gradient-to-r from-rose-200 to-pink-200 mb-3 sm:mb-4" />
+                      <div className="w-full h-px bg-gradient-to-r from-sage/20 to-terracotta/20 mb-3 sm:mb-4" />
                       <p className="text-gray-600 leading-relaxed text-xs sm:text-sm lg:text-base">
                         {faq.answer}
                       </p>
@@ -131,16 +131,16 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mt-8 sm:mt-12 p-4 sm:p-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-xl sm:rounded-2xl"
+          className="text-center mt-8 sm:mt-12 p-4 sm:p-6 bg-gradient-to-r from-cream/50 to-white rounded-xl sm:rounded-2xl border border-sage/10"
         >
           <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
             Vẫn còn thắc mắc? Liên hệ ngay!
           </p>
           <a
-            href="https://zalo.me/0392828888"
+            href="https://zalo.me/0938361234"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-rose-600 font-semibold hover:text-rose-700 transition-colors text-sm sm:text-base"
+            className="inline-flex items-center gap-2 text-sage font-semibold hover:text-sage/80 transition-colors text-sm sm:text-base"
           >
             <span>Chat Zalo ngay</span>
             <span className="text-lg sm:text-xl">→</span>

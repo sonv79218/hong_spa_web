@@ -59,7 +59,7 @@ export default function PricingSection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-rose-50">
+    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-cream/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -69,13 +69,13 @@ export default function PricingSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <Sparkles size={14} className="text-rose-500" />
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Bảng giá ưu đãi</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <Sparkles size={14} className="text-sage" />
+            <span className="text-xs sm:text-sm font-medium text-sage">Bảng giá ưu đãi</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Giá triệt lông
-            <span className="text-rose-500"> hấp dẫn</span>
+            <span className="text-terracotta"> hấp dẫn</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Nhiều gói combo tiết kiệm, ưu đãi lên đến 50% - Đăng ký ngay!
@@ -98,7 +98,7 @@ export default function PricingSection() {
               {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                  <div className="bg-gradient-to-r from-rose-500 to-pink-500 text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-1">
+                  <div className="bg-gradient-to-r from-sage to-sage/80 text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-1">
                     <span>PHỔ BIẾN NHẤT</span>
                   </div>
                 </div>
@@ -106,13 +106,13 @@ export default function PricingSection() {
 
               <div className={`relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 h-full ${
                 plan.popular 
-                  ? 'shadow-xl sm:shadow-2xl shadow-rose-300/50 ring-2 ring-rose-400' 
-                  : 'shadow-md sm:shadow-lg shadow-rose-100/50 hover:shadow-xl hover:shadow-rose-200/50'
-              }`}>
+                  ? 'shadow-xl sm:shadow-2xl shadow-sage/20 ring-2 ring-sage/30' 
+                  : 'shadow-md sm:shadow-lg shadow-sage/5 hover:shadow-xl hover:shadow-sage/10'
+              } border border-sage/10`}>
                 {/* Sale badge */}
                 {plan.isSale && (
                   <div className="absolute top-3 right-3 z-10">
-                    <div className="bg-red-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold">
+                    <div className="bg-terracotta text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold">
                       -50%
                     </div>
                   </div>
@@ -121,7 +121,7 @@ export default function PricingSection() {
                 {/* Hot badge */}
                 {plan.isHot && !plan.popular && (
                   <div className="absolute top-3 left-3 z-10">
-                    <div className="bg-rose-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-1">
+                    <div className="bg-sage text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-1">
                       <span>HOT</span>
                     </div>
                   </div>
@@ -146,7 +146,7 @@ export default function PricingSection() {
                   {/* Price */}
                   <div className="mb-3 sm:mb-4">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-rose-500">
+                      <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-terracotta">
                         {plan.price}
                       </span>
                       {plan.oldPrice && (
@@ -161,7 +161,7 @@ export default function PricingSection() {
                   <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-2 text-xs sm:text-sm text-gray-600">
-                        <Check size={14} className="text-green-500 flex-shrink-0 mt-0.5" />
+                        <Check size={14} className="text-sage flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -170,10 +170,10 @@ export default function PricingSection() {
                   {/* CTA Button */}
                   <button
                     onClick={scrollToContact}
-                    className={`w-full py-2.5 sm:py-3 px-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 active:scale-[0.98] ${
+                    className={`w-full py-2.5 sm:py-3 px-4 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 active:scale-[0.98] ${
                       plan.popular
-                        ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-300/50 hover:shadow-xl'
-                        : 'bg-rose-50 text-rose-600 hover:bg-rose-100'
+                        ? 'bg-sage text-white shadow-lg shadow-sage/20 hover:bg-sage/90'
+                        : 'bg-sage/10 text-sage hover:bg-sage/20'
                     }`}
                   >
                     Đăng ký ngay
@@ -197,7 +197,7 @@ export default function PricingSection() {
           </p>
           <button
             onClick={scrollToContact}
-            className="inline-flex items-center gap-2 text-rose-600 font-semibold hover:text-rose-700 transition-colors text-sm sm:text-base"
+            className="inline-flex items-center gap-2 text-sage font-semibold hover:text-sage/80 transition-colors text-sm sm:text-base"
           >
             <span>Cần tư vấn thêm? Liên hệ ngay</span>
             <span className="text-lg sm:text-xl">→</span>

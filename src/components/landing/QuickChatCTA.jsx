@@ -15,7 +15,6 @@ export default function QuickChatCTA() {
     phone: '',
   });
 
-  // Detect mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -25,7 +24,6 @@ export default function QuickChatCTA() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Close popup on escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
@@ -50,7 +48,7 @@ export default function QuickChatCTA() {
   };
 
   const openZalo = () => {
-    window.open('https://zalo.me/0392828888', '_blank');
+    window.open('https://zalo.me/0938361234', '_blank');
   };
 
   const handleSubmit = async () => {
@@ -116,8 +114,8 @@ export default function QuickChatCTA() {
             whileTap={{ scale: 0.95 }}
             className="relative group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full animate-ping opacity-30" />
-            <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full shadow-lg shadow-rose-400/50 hover:shadow-xl hover:shadow-rose-500/60 transition-all duration-300">
+            <div className="absolute inset-0 bg-sage rounded-full animate-ping opacity-30" />
+            <div className="relative flex items-center justify-center w-14 h-14 bg-sage rounded-full shadow-lg shadow-sage/20 hover:shadow-xl hover:shadow-sage/30 transition-all duration-300">
               <MessageCircle size={24} className="text-white" />
             </div>
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -152,10 +150,10 @@ export default function QuickChatCTA() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-sm shadow-2xl overflow-hidden"
+              className="relative bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-sm shadow-2xl overflow-hidden border border-sage/10"
             >
               {/* Header */}
-              <div className="relative bg-gradient-to-r from-rose-500 to-pink-500 p-5 sm:p-6 text-center">
+              <div className="relative bg-sage p-5 sm:p-6 text-center">
                 <button
                   onClick={handleClosePopup}
                   className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors"
@@ -183,8 +181,8 @@ export default function QuickChatCTA() {
                     animate={{ scale: 1 }}
                     className="text-center py-6"
                   >
-                    <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-green-100 flex items-center justify-center">
-                      <Check size={28} className="text-green-500" />
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-sage/10 flex items-center justify-center">
+                      <Check size={28} className="text-sage" />
                     </div>
                     <p className="text-gray-700 font-medium">Đang mở Zalo...</p>
                   </motion.div>
@@ -198,7 +196,7 @@ export default function QuickChatCTA() {
                         value={formData.name}
                         onChange={handleChange}
                         disabled={loading}
-                        className="w-full px-4 py-3 bg-gray-50 rounded-xl border-2 border-transparent focus:border-rose-300 focus:bg-white transition-all outline-none text-gray-800 placeholder:text-gray-400 text-sm"
+                        className="w-full px-4 py-3 bg-gray-50 rounded-xl border-2 border-transparent focus:border-sage/30 focus:bg-white transition-all outline-none text-gray-800 placeholder:text-gray-400 text-sm"
                       />
                     </div>
 
@@ -210,7 +208,7 @@ export default function QuickChatCTA() {
                         value={formData.phone}
                         onChange={handleChange}
                         disabled={loading}
-                        className="w-full px-4 py-3 bg-gray-50 rounded-xl border-2 border-transparent focus:border-rose-300 focus:bg-white transition-all outline-none text-gray-800 placeholder:text-gray-400 text-sm"
+                        className="w-full px-4 py-3 bg-gray-50 rounded-xl border-2 border-transparent focus:border-sage/30 focus:bg-white transition-all outline-none text-gray-800 placeholder:text-gray-400 text-sm"
                       />
                     </div>
 
@@ -218,7 +216,7 @@ export default function QuickChatCTA() {
                       onClick={handleSubmit}
                       disabled={loading}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl font-semibold text-base shadow-lg shadow-rose-300/50 hover:shadow-xl hover:shadow-rose-400/60 transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+                      className="w-full py-3 sm:py-4 bg-sage text-white rounded-xl font-semibold text-base shadow-lg shadow-sage/20 hover:bg-sage/90 transition-all disabled:opacity-70 flex items-center justify-center gap-2"
                     >
                       {loading ? (
                         <>
@@ -237,7 +235,7 @@ export default function QuickChatCTA() {
                       Hoặc bỏ qua và{' '}
                       <button
                         onClick={openZalo}
-                        className="text-rose-500 font-medium hover:underline"
+                        className="text-sage font-medium hover:underline"
                       >
                         chat Zalo ngay
                       </button>
@@ -250,11 +248,11 @@ export default function QuickChatCTA() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Sticky CTA - Fixed bottom, pushes content up */}
-      <div className="fixed bottom-0 left-0 right-0 p-3 sm:p-4 bg-white/95 backdrop-blur-lg border-t border-rose-100 lg:hidden z-40 safe-area-bottom">
+      {/* Mobile Sticky CTA */}
+      <div className="fixed bottom-0 left-0 right-0 p-3 sm:p-4 bg-white/95 backdrop-blur-lg border-t border-sage/10 lg:hidden z-40 safe-area-bottom">
         <button
           onClick={handleOpenPopup}
-          className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg active:scale-[0.98] transition-transform"
+          className="w-full inline-flex items-center justify-center gap-2 bg-sage text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold shadow-lg active:scale-[0.98] transition-transform"
         >
           <MessageCircle size={16} className="sm:text-lg" />
           <span>Đăng ký tư vấn MIỄN PHÍ</span>

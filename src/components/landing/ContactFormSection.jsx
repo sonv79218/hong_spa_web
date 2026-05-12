@@ -39,7 +39,7 @@ export default function ContactFormSection() {
   };
 
   const openZalo = () => {
-    window.open('https://zalo.me/0392828888', '_blank');
+    window.open('https://zalo.me/0938361234', '_blank');
   };
 
   const openFacebook = () => {
@@ -83,10 +83,10 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section id="contact-form" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-rose-50 to-white relative overflow-hidden">
-      {/* Background decorations - smaller on mobile */}
-      <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-rose-200/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-56 sm:h-56 lg:w-80 lg:h-80 bg-pink-200/20 rounded-full blur-3xl" />
+    <section id="contact-form" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-cream/50 to-white relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-sage/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-56 sm:h-56 lg:w-80 lg:h-80 bg-terracotta/5 rounded-full blur-3xl" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -97,13 +97,13 @@ export default function ContactFormSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-sm mb-3 sm:mb-4">
+          <div className="inline-flex items-center gap-2 bg-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-sm mb-3 sm:mb-4 border border-sage/10">
             <span className="text-lg sm:text-xl">✨</span>
             <span className="text-xs sm:text-sm font-medium text-gray-700">Đăng ký ngay hôm nay</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
             Nhận tư vấn
-            <span className="text-rose-500"> miễn phí</span>
+            <span className="text-sage"> miễn phí</span>
           </h2>
           <p className="text-gray-600 max-w-lg mx-auto text-sm sm:text-base px-2">
             Để lại thông tin, chúng tôi sẽ liên hệ tư vấn chi tiết về liệu trình phù hợp với bạn
@@ -116,13 +116,13 @@ export default function ContactFormSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-lg sm:shadow-xl shadow-rose-100/50"
+          className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-lg shadow-sage/5 border border-sage/10"
         >
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             {/* Name Input */}
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
-                Họ và tên <span className="text-rose-500">*</span>
+                Họ và tên <span className="text-terracotta">*</span>
               </label>
               <input
                 type="text"
@@ -133,19 +133,19 @@ export default function ContactFormSection() {
                 disabled={loading}
                 className={`w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 outline-none text-gray-800 placeholder:text-gray-400 text-sm ${
                   errors.name 
-                    ? 'border-rose-300 bg-rose-50' 
-                    : 'border-transparent focus:border-rose-300 focus:bg-white'
+                    ? 'border-terracotta/30 bg-terracotta/5' 
+                    : 'border-transparent focus:border-sage/30 focus:bg-white'
                 } ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
               />
               {errors.name && (
-                <p className="text-rose-500 text-xs sm:text-sm mt-1">{errors.name}</p>
+                <p className="text-terracotta text-xs sm:text-sm mt-1">{errors.name}</p>
               )}
             </div>
 
             {/* Phone Input */}
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
-                Số điện thoại <span className="text-rose-500">*</span>
+                Số điện thoại <span className="text-terracotta">*</span>
               </label>
               <input
                 type="tel"
@@ -156,12 +156,12 @@ export default function ContactFormSection() {
                 disabled={loading}
                 className={`w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 outline-none text-gray-800 placeholder:text-gray-400 text-sm ${
                   errors.phone 
-                    ? 'border-rose-300 bg-rose-50' 
-                    : 'border-transparent focus:border-rose-300 focus:bg-white'
+                    ? 'border-terracotta/30 bg-terracotta/5' 
+                    : 'border-transparent focus:border-sage/30 focus:bg-white'
                 } ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
               />
               {errors.phone && (
-                <p className="text-rose-500 text-xs sm:text-sm mt-1">{errors.phone}</p>
+                <p className="text-terracotta text-xs sm:text-sm mt-1">{errors.phone}</p>
               )}
             </div>
 
@@ -170,7 +170,7 @@ export default function ContactFormSection() {
               type="submit"
               disabled={loading}
               whileTap={{ scale: loading ? 1 : 0.98 }}
-              className="w-full py-3 sm:py-4 px-6 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-lg shadow-rose-300/50 hover:shadow-xl hover:shadow-rose-400/50 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 sm:gap-3"
+              className="w-full py-3 sm:py-4 px-6 bg-sage text-white rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-lg shadow-sage/20 hover:bg-sage/90 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 sm:gap-3"
             >
               {loading ? (
                 <>
@@ -193,18 +193,18 @@ export default function ContactFormSection() {
 
           {/* Divider */}
           <div className="flex items-center gap-3 sm:gap-4 my-4 sm:my-6">
-            <div className="flex-1 h-px bg-gray-200" />
+            <div className="flex-1 h-px bg-sage/10" />
             <span className="text-xs sm:text-sm text-gray-400">hoặc</span>
-            <div className="flex-1 h-px bg-gray-200" />
+            <div className="flex-1 h-px bg-sage/10" />
           </div>
 
           {/* Social Buttons */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <a
-              href="https://zalo.me/0392828888"
+              href="https://zalo.me/0938361234"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 bg-blue-500 text-white rounded-xl sm:rounded-2xl font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md sm:shadow-lg"
+              className="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 bg-sage text-white rounded-xl sm:rounded-2xl font-semibold hover:bg-sage/90 transition-all duration-300 shadow-md sm:shadow-lg"
             >
               <MessageCircle size={18} className="sm:text-xl" />
               <span className="text-sm sm:text-base">Zalo</span>
@@ -214,7 +214,7 @@ export default function ContactFormSection() {
               href="https://m.me/hongspavn"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 bg-[#1877F2] text-white rounded-xl sm:rounded-2xl font-semibold hover:bg-[#166FE5] transition-all duration-300 shadow-md sm:shadow-lg"
+              className="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 bg-terracotta text-white rounded-xl sm:rounded-2xl font-semibold hover:bg-terracotta/90 transition-all duration-300 shadow-md sm:shadow-lg"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -233,15 +233,15 @@ export default function ContactFormSection() {
           className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-6 sm:mt-8 text-xs sm:text-sm text-gray-500"
         >
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <Check size={14} className="text-green-500" />
+            <Check size={14} className="text-sage" />
             <span>Tư vấn miễn phí</span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <Check size={14} className="text-green-500" />
+            <Check size={14} className="text-sage" />
             <span>Bảo mật</span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <Check size={14} className="text-green-500" />
+            <Check size={14} className="text-sage" />
             <span>Phản hồi 5p</span>
           </div>
         </motion.div>
@@ -261,10 +261,10 @@ export default function ContactFormSection() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-xs w-full text-center shadow-2xl"
+              className="relative bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 max-w-xs w-full text-center shadow-2xl border border-sage/10"
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
-                <Check size={32} className="sm:text-4xl text-green-500" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-sage/10 flex items-center justify-center">
+                <Check size={32} className="sm:text-4xl text-sage" />
               </div>
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-gray-800 mb-2">
                 Thành công!

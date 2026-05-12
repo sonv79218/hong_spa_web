@@ -8,10 +8,12 @@ import PricingSection from "../components/landing/PricingSection";
 import FAQSection from "../components/landing/FAQSection";
 import ContactFormSection from "../components/landing/ContactFormSection";
 import QuickChatCTA from "../components/landing/QuickChatCTA";
+import Navbar from "../components/layout/Navbar";
 
 export default function LaserHairRemovalLanding() {
   return (
     <div className="pb-16 sm:pb-0">
+      <Navbar />
       <HeroSection />
       <PainPoints />
       <TechnologySection />

@@ -30,7 +30,7 @@ export default function PainPoints() {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-rose-50">
+    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-cream/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -40,13 +40,13 @@ export default function PainPoints() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-rose-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
-            <AlertCircle size={14} className="text-rose-500" />
-            <span className="text-xs sm:text-sm font-medium text-rose-700">Bạn đang gặp tình trạng này?</span>
+          <div className="inline-flex items-center gap-2 bg-sage/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-3 sm:mb-4">
+            <AlertCircle size={14} className="text-sage" />
+            <span className="text-xs sm:text-sm font-medium text-sage">Bạn đang gặp tình trạng này?</span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
             Đừng để những vấn đề này
-            <span className="text-rose-500"> làm mất tự tin</span>
+            <span className="text-sage"> làm mất tự tin</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Hàng ngày bạn phải đối mặt với những phiền toái này? Có cách giải quyết tốt hơn!
@@ -63,7 +63,7 @@ export default function PainPoints() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
-              className="group bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-md sm:shadow-lg shadow-rose-100/50 hover:shadow-xl hover:shadow-rose-200/50 transition-all duration-300"
+              className="group bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg shadow-sage/5 hover:shadow-xl hover:shadow-sage/10 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-24 sm:h-32 md:h-40 lg:h-48 overflow-hidden">
@@ -80,7 +80,7 @@ export default function PainPoints() {
                 </div>
 
                 {/* X mark */}
-                <div className="absolute bottom-2 left-2 w-6 h-6 sm:bottom-3 sm:left-3 sm:w-8 sm:h-8 bg-red-500/90 rounded-full flex items-center justify-center">
+                <div className="absolute bottom-2 left-2 w-6 h-6 sm:bottom-3 sm:left-3 sm:w-8 sm:h-8 bg-terracotta/90 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-[10px] sm:text-sm">✕</span>
                 </div>
               </div>
@@ -104,11 +104,11 @@ export default function PainPoints() {
           className="text-center mt-8 sm:mt-12"
         >
           <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-            <span className="text-rose-500 font-semibold">Giải pháp</span> cho bạn: Triệt lông diode laser
+            <span className="text-sage font-semibold">Giải pháp</span> cho bạn: Triệt lông diode laser
           </p>
           <button
             onClick={scrollToContact}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg shadow-rose-300/50 hover:shadow-xl hover:shadow-rose-400/50 transition-all duration-300 hover:-translate-y-1"
+            className="inline-flex items-center gap-2 bg-sage text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold shadow-lg hover:bg-sage/90 transition-all duration-300"
           >
             <span>Tìm hiểu ngay</span>
             <span className="text-lg sm:text-xl">→</span>
