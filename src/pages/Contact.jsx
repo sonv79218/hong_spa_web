@@ -390,6 +390,42 @@ const ContactPage = () => {
         </div>
       </div>
 
+      {/* Policy Notice */}
+      <div className="py-8 sm:py-12 bg-white border-t border-sage/10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-sage/5 rounded-2xl p-5 sm:p-6">
+            <h3 className="font-semibold text-sage mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Chính sách dịch vụ
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li className="flex items-start gap-2">
+                <span className="text-sage mt-0.5">•</span>
+                <span>Khách hàng đến trực tiếp cơ sở để sử dụng dịch vụ.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sage mt-0.5">•</span>
+                <span>Không áp dụng vận chuyển.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sage mt-0.5">•</span>
+                <span>Thanh toán trực tiếp tại cơ sở hoặc sau khi sử dụng dịch vụ.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sage mt-0.5">•</span>
+                <span>Website chỉ thu thập thông tin khách hàng khi đặt lịch qua Messenger để tư vấn dịch vụ.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sage mt-0.5">•</span>
+                <span>Thông tin không chia sẻ cho bên thứ ba.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <Footer />
 
       {/* Success Modal */}

@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Phone, MessageCircle, ArrowRight, Star, Shield, Heart, MapPin, Clock, Navigation } from 'lucide-react';
+import { Phone, MessageCircle, ArrowRight, Star, Shield, Heart, MapPin, Clock, Navigation, CarTaxiFront } from 'lucide-react';
 
 const Footer = () => {
   const ref = useRef(null);
@@ -152,6 +152,11 @@ const Footer = () => {
                   >
                     0392828888
                   </a>
+                </div>
+              </div>
+                         <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-terracotta/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Phone size={20} className="text-terracotta" />
                 </div>
               </div>
 

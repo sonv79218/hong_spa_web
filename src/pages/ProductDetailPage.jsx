@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Star, Clock, Users, ShieldCheck, Check, MessageCircle, ChevronDown } from "lucide-react";
+import { ArrowLeft, Star, Clock, Users, ShieldCheck, Check, MessageCircle, ChevronDown, Loader2 } from "lucide-react";
 import { products } from "../data/productsData";
 import ProductCard from "../components/ProductCard";
 
@@ -12,19 +12,37 @@ export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const product = products.find((item) => item.id === id);
-
-  const [selectedImage, setSelectedImage] = useState(
-    product?.images?.[0] || product?.image
-  );
+  const [selectedAreaId, setSelectedAreaId] = useState(null);
   const [activeTab, setActiveTab] = useState("mo-ta");
   const [showHeader, setShowHeader] = useState(false);
 
+  // Find product by id
+  const product = useMemo(() => 
+    products.find((item) => item.id === id),
+    [id]
+  );
+
+  // Filter related areas by product.group
+  const relatedAreas = useMemo(() => {
+    if (!product) return [];
+    return products.filter((item) => item.group === product.group);
+  }, [product]);
+
+  const selectedArea = useMemo(() => {
+    if (relatedAreas.length === 0) return null;
+    return (
+      relatedAreas.find((area) => area.id === selectedAreaId) ||
+      relatedAreas.find((area) => area.id === product?.id) ||
+      relatedAreas[0]
+    );
+  }, [relatedAreas, selectedAreaId, product?.id]);
+
+  // Scroll to top when id changes
   useEffect(() => {
-    if (!product) return;
     window.scrollTo(0, 0);
   }, [id]);
 
+  // Show/hide sticky header on scroll
   useEffect(() => {
     const handleScroll = () => {
       setShowHeader(window.scrollY > 300);
@@ -33,40 +51,23 @@ export default function ProductDetailPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!product) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-gray-500 mb-4">Không tìm thấy sản phẩm</p>
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-sage text-white rounded-xl font-medium"
-          >
-            <ArrowLeft size={18} />
-            Quay lại
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const relatedProducts = products.filter(
-    (item) => item.category === product.category && item.id !== product.id
-  );
-
-  const discountPercent = Math.round(
-    ((product.price - product.salePrice) / product.price) * 100
-  );
+  const handleAreaSelect = (area) => {
+    setSelectedAreaId(area.id);
+    setActiveTab("mo-ta");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleBook = () => {
-    localStorage.setItem("selectedService", JSON.stringify(product));
+    if (!selectedArea) return;
+    
+    localStorage.setItem("selectedService", JSON.stringify(selectedArea));
 
     const appUrl = "fb-messenger://user-thread/100083175039911";
     const webUrl = "https://www.facebook.com/messages/t/code0359";
     const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 
     if (isMobile) {
-      window.location.href = appUrl;
+      window.location.assign(appUrl);
       setTimeout(() => window.open(webUrl, "_blank"), 1200);
     } else {
       window.open(webUrl, "_blank");
@@ -81,6 +82,47 @@ export default function ProductDetailPage() {
     { id: "luu-y", label: "Lưu ý" },
     { id: "faq", label: "FAQ" },
   ];
+
+  // Related products (different category)
+  const relatedProducts = useMemo(() => {
+    return products.filter(
+      (item) => item.category === product?.category && item.id !== product?.id
+    );
+  }, [product?.category, product?.id]);
+
+  // Loading state
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <Loader2 size={32} className="animate-spin text-sage mx-auto mb-4" />
+          <p className="text-gray-500">Đang tải...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // No areas found
+  if (relatedAreas.length === 0 || !selectedArea) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <p className="text-gray-500 mb-4">Không tìm thấy dịch vụ</p>
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-sage text-white rounded-xl font-medium"
+          >
+            <ArrowLeft size={18} />
+            Quay lại
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const discountPercent = Math.round(
+    ((selectedArea.price - selectedArea.salePrice) / selectedArea.price) * 100
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 pb-24 sm:pb-8">
@@ -98,7 +140,7 @@ export default function ProductDetailPage() {
             <ArrowLeft size={22} />
           </button>
           <h1 className="font-semibold text-gray-800 text-sm line-clamp-1 flex-1">
-            {product.title}
+            {selectedArea.title}
           </h1>
         </div>
       </div>
@@ -113,45 +155,74 @@ export default function ProductDetailPage() {
             <ArrowLeft size={22} />
           </button>
           <h1 className="font-semibold text-gray-800 text-sm line-clamp-1">
-            {product.title}
+            {selectedArea.title}
           </h1>
         </div>
       </div>
+
+      {/* Area Selector */}
+      {/* {relatedAreas.length > 1 && (
+        <div className="bg-white px-4 py-3 border-b border-sage/10">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+            {relatedAreas.map((area) => (
+              <button
+                key={area.id}
+                onClick={() => handleAreaSelect(area)}
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-sm whitespace-nowrap border-2 transition-all ${
+                  selectedArea.id === area.id
+                    ? "bg-sage text-white border-sage shadow-sm"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-sage/50"
+                }`}
+              >
+                {area.area || area.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      )} */}
 
       {/* Image Gallery */}
       <div className="bg-white">
         {/* Main Image */}
         <div className="relative aspect-square max-w-lg mx-auto">
           <img
-            src={selectedImage}
-            alt={product.title}
+            src={selectedArea.image}
+            alt={selectedArea.title}
             className="w-full h-full object-cover"
           />
 
           {/* Discount Badge */}
-          <div className="absolute top-4 left-4 bg-terracotta text-white text-sm font-bold px-3 py-1.5 rounded-lg">
-            -{discountPercent}%
-          </div>
+          {discountPercent > 0 && (
+            <div className="absolute top-4 left-4 bg-terracotta text-white text-sm font-bold px-3 py-1.5 rounded-lg">
+              -{discountPercent}%
+            </div>
+          )}
         </div>
 
         {/* Thumbnails */}
-        <div className="px-4 py-3">
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-            {product.images?.map((img, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedImage(img)}
-                className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                  selectedImage === img
-                    ? "border-sage shadow-sm"
-                    : "border-transparent hover:border-gray-300"
-                }`}
-              >
-                <img src={img} alt={`${product.title} ${index + 1}`} className="w-full h-full object-cover" />
-              </button>
-            ))}
+        {relatedAreas.length > 1 && (
+          <div className="px-4 py-3">
+            <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+              {relatedAreas.map((area) => (
+                <button
+                  key={area.id}
+                  onClick={() => handleAreaSelect(area)}
+                  className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                    selectedArea.id === area.id
+                      ? "border-sage shadow-sm"
+                      : "border-transparent hover:border-gray-300"
+                  }`}
+                >
+                  <img
+                    src={area.image}
+                    alt={area.area || area.title}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Product Info */}
@@ -159,45 +230,51 @@ export default function ProductDetailPage() {
         {/* Price */}
         <div className="flex items-baseline gap-3 mb-3">
           <span className="text-terracotta font-bold text-2xl sm:text-3xl">
-            {formatPrice(product.salePrice)}
+            {formatPrice(selectedArea.salePrice)}
           </span>
           <span className="text-gray-400 text-base line-through">
-            {formatPrice(product.price)}
+            {formatPrice(selectedArea.price)}
           </span>
         </div>
 
         {/* Title */}
         <h1 className="font-bold text-xl sm:text-2xl text-gray-800 mb-2 leading-tight">
-          {product.title}
+          {selectedArea.title}
         </h1>
 
         {/* Rating & Sold */}
         <div className="flex items-center gap-4 text-sm text-gray-600">
           <div className="flex items-center gap-1">
             <Star size={14} className="text-sage fill-sage" />
-            <span className="font-medium">{product.rating}</span>
-            <span className="text-gray-400">({product.reviewCount} đánh giá)</span>
+            <span className="font-medium">{selectedArea.rating}</span>
+            <span className="text-gray-400">({selectedArea.reviewCount} đánh giá)</span>
           </div>
           <div className="text-gray-400">|</div>
-          <span>Đã bán {product.sold}</span>
+          <span>Đã bán {selectedArea.sold}</span>
         </div>
       </div>
 
       {/* Service Info Pills */}
       <div className="bg-white mt-2 px-4 py-4">
         <div className="flex flex-wrap gap-2">
-          <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
-            <Clock size={16} className="text-sage" />
-            <span className="text-sm text-gray-700">{product.duration}</span>
-          </div>
-          <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
-            <Users size={16} className="text-sage" />
-            <span className="text-sm text-gray-700">{product.sessions}</span>
-          </div>
-          <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
-            <ShieldCheck size={16} className="text-sage" />
-            <span className="text-sm text-gray-700">{product.warranty}</span>
-          </div>
+          {selectedArea.duration && (
+            <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
+              <Clock size={16} className="text-sage" />
+              <span className="text-sm text-gray-700">{selectedArea.duration}</span>
+            </div>
+          )}
+          {selectedArea.sessions && (
+            <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
+              <Users size={16} className="text-sage" />
+              <span className="text-sm text-gray-700">{selectedArea.sessions}</span>
+            </div>
+          )}
+          {selectedArea.warranty && (
+            <div className="flex items-center gap-2 bg-sage/10 px-3 py-2 rounded-lg">
+              <ShieldCheck size={16} className="text-sage" />
+              <span className="text-sm text-gray-700">{selectedArea.warranty}</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -228,73 +305,81 @@ export default function ProductDetailPage() {
         {/* Mô tả */}
         <div id="mo-ta" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3">
           <h2 className="font-semibold text-gray-800 mb-3">Mô tả dịch vụ</h2>
-          <p className="text-gray-600 text-sm leading-relaxed">{product.desc}</p>
+          <p className="text-gray-600 text-sm leading-relaxed">{selectedArea.desc}</p>
         </div>
 
         {/* Lợi ích */}
-        <div id="loi-ich" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
-          <h2 className="font-semibold text-gray-800 mb-3">Lợi ích</h2>
-          <div className="space-y-2">
-            {product.benefits.map((item, index) => (
-              <div key={index} className="flex items-start gap-2">
-                <Check size={16} className="text-sage flex-shrink-0 mt-0.5" />
-                <span className="text-gray-600 text-sm">{item}</span>
-              </div>
-            ))}
+        {selectedArea.benefits && selectedArea.benefits.length > 0 && (
+          <div id="loi-ich" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
+            <h2 className="font-semibold text-gray-800 mb-3">Lợi ích</h2>
+            <div className="space-y-2">
+              {selectedArea.benefits.map((item, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <Check size={16} className="text-sage flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-600 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Phù hợp */}
-        <div id="phu-hop" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
-          <h2 className="font-semibold text-gray-800 mb-3">Phù hợp với</h2>
-          <div className="flex flex-wrap gap-2">
-            {product.suitableFor.map((item, index) => (
-              <span
-                key={index}
-                className="bg-sage/10 text-sage px-3 py-1.5 rounded-full text-sm"
-              >
-                {item}
-              </span>
-            ))}
+        {selectedArea.suitableFor && selectedArea.suitableFor.length > 0 && (
+          <div id="phu-hop" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
+            <h2 className="font-semibold text-gray-800 mb-3">Phù hợp với</h2>
+            <div className="flex flex-wrap gap-2">
+              {selectedArea.suitableFor.map((item, index) => (
+                <span
+                  key={index}
+                  className="bg-sage/10 text-sage px-3 py-1.5 rounded-full text-sm"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Quy trình */}
-        <div id="quy-trinh" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
-          <h2 className="font-semibold text-gray-800 mb-3">Quy trình thực hiện</h2>
-          <div className="space-y-3">
-            {product.process.map((item, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-full bg-sage/10 text-sage flex items-center justify-center text-sm font-bold flex-shrink-0">
-                  {index + 1}
+        {selectedArea.process && selectedArea.process.length > 0 && (
+          <div id="quy-trinh" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
+            <h2 className="font-semibold text-gray-800 mb-3">Quy trình thực hiện</h2>
+            <div className="space-y-3">
+              {selectedArea.process.map((item, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-7 h-7 rounded-full bg-sage/10 text-sage flex items-center justify-center text-sm font-bold flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <span className="text-gray-600 text-sm">{item}</span>
                 </div>
-                <span className="text-gray-600 text-sm">{item}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Lưu ý */}
-        <div id="luu-y" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
-          <h2 className="font-semibold text-gray-800 mb-3">Lưu ý</h2>
-          <div className="space-y-2">
-            {product.notes.map((item, index) => (
-              <div key={index} className="flex items-start gap-2">
-                <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-xs">!</span>
+        {selectedArea.notes && selectedArea.notes.length > 0 && (
+          <div id="luu-y" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
+            <h2 className="font-semibold text-gray-800 mb-3">Lưu ý</h2>
+            <div className="space-y-2">
+              {selectedArea.notes.map((item, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-xs">!</span>
+                  </div>
+                  <span className="text-gray-600 text-sm">{item}</span>
                 </div>
-                <span className="text-gray-600 text-sm">{item}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* FAQ */}
-        {product.faq && product.faq.length > 0 && (
+        {selectedArea.faq && selectedArea.faq.length > 0 && (
           <div id="faq" className="p-4 sm:p-5 bg-white rounded-2xl shadow-sm m-2 sm:m-3 mt-0">
             <h2 className="font-semibold text-gray-800 mb-3">Câu hỏi thường gặp</h2>
             <div className="space-y-3">
-              {product.faq.map((item, index) => (
+              {selectedArea.faq.map((item, index) => (
                 <details key={index} className="bg-gray-50 rounded-xl overflow-hidden group">
                   <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
                     <span className="font-medium text-gray-800 text-sm">{item.question}</span>
@@ -345,15 +430,13 @@ export default function ProductDetailPage() {
       {/* Sticky Bottom CTA - Mobile Only */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-sage/10 px-4 py-3 z-40 lg:hidden safe-area-bottom">
         <div className="flex items-center gap-3">
-          {/* Price */}
           <div className="flex-shrink-0">
-            <p className="text-xs text-gray-500">Giá từ</p>
+            <p className="text-xs text-gray-500">Giá: </p>
             <p className="text-lg font-bold text-terracotta">
-              {formatPrice(product.salePrice)}
+              {formatPrice(selectedArea.salePrice)}
             </p>
           </div>
 
-          {/* Book Button */}
           <button
             onClick={handleBook}
             className="flex-1 py-3.5 bg-sage text-white rounded-xl font-semibold text-sm shadow-lg shadow-sage/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
@@ -364,7 +447,7 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Desktop CTA - Inside container */}
+      {/* Desktop CTA */}
       <div className="hidden lg:block bg-white mt-2 p-5">
         <button
           onClick={handleBook}

@@ -81,7 +81,7 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 sm:pb-0">
-      <Navbar />
+      {/* <Navbar /> */}
 
       {/* Mobile Header - Sticky */}
       <div className="sticky top-0 z-30 bg-white shadow-sm border-b border-sage/10">
@@ -139,7 +139,7 @@ export default function ProductPage() {
             <span>{sortOptions.find((s) => s.id === sortBy)?.label}</span>
           </button>
 
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <button className="p-2 text-gray-500 hover:text-sage transition-colors">
               <Heart size={20} />
             </button>
@@ -149,7 +149,7 @@ export default function ProductPage() {
                 0
               </span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
