@@ -8,7 +8,7 @@ const ComboSection = ({ combos }) => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <div ref={ref} className="py-20 bg-cream">
+    <div ref={ref} className="py-10 bg-cream">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-center font-serif text-4xl font-bold mb-10">
           Combo nổi bật

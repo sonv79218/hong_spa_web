@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Sparkles, Heart, Award } from 'lucide-react';
-
+import hong_spa_interior from '../../assets/images/hero/image.png';
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="py-16 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
+    <section ref={ref} className="pt-10 py-5 sm:py-20 md:py-28 bg-cream relative overflow-hidden">
       {/* Top gradient transition from hero */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cream/50 to-cream/0" />
       
@@ -46,7 +46,7 @@ const AboutSection = () => {
               {/* Image wrapper with rounded corners */}
               <div className="relative overflow-hidden rounded-3xl md:rounded-[2rem] shadow-2xl shadow-sage/10">
                 <img
-                  src="https://scontent.fhan12-1.fna.fbcdn.net/v/t39.30808-6/517572504_3796812750463852_1710389456939006730_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=TPUwp4Ru88QQ7kNvwH9SQbW&_nc_oc=AdrILx4i7XSjvTAbkX3g4dYLUtXJosA2lPIZKuZqv5f5KWYvmar3rB48BJTfiIhQzbA&_nc_zt=23&_nc_ht=scontent.fhan12-1.fna&_nc_gid=b7kQjoBcfi1AeWpFPqpmDA&_nc_ss=7b2a8&oh=00_Af2c-GK3JnMyy2fuEuvXJmBtzz93kwepxHEIQONl4KoZ4A&oe=69F94245"
+                  src={hong_spa_interior}
                   alt="Hong Spa Interior"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />

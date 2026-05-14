@@ -13,6 +13,7 @@ export default function ProductDetailPage() {
   const navigate = useNavigate();
 
   const [selectedAreaId, setSelectedAreaId] = useState(null);
+  const [selectedWarrantyId, setSelectedWarrantyId] = useState(null);
   const [activeTab, setActiveTab] = useState("mo-ta");
   const [showHeader, setShowHeader] = useState(false);
 
@@ -36,6 +37,16 @@ export default function ProductDetailPage() {
       relatedAreas[0]
     );
   }, [relatedAreas, selectedAreaId, product?.id]);
+
+const selectedWarranty = useMemo(() => {
+  if (!selectedArea?.warrantyOptions?.length) return null;
+
+  return (
+    selectedArea.warrantyOptions.find(
+      (item) => item.id === selectedWarrantyId
+    ) || selectedArea.warrantyOptions[0]
+  );
+}, [selectedArea, selectedWarrantyId]);
 
   // Scroll to top when id changes
   useEffect(() => {
@@ -120,9 +131,16 @@ export default function ProductDetailPage() {
     );
   }
 
-  const discountPercent = Math.round(
-    ((selectedArea.price - selectedArea.salePrice) / selectedArea.price) * 100
-  );
+  // const discountPercent = Math.round(
+  //   ((selectedArea.price - selectedArea.salePrice) / selectedArea.price) * 100
+  // );
+  const currentPrice = selectedWarranty?.price || selectedArea.price;
+const currentSalePrice =
+  selectedWarranty?.salePrice || selectedArea.salePrice;
+
+const discountPercent = Math.round(
+  ((currentPrice - currentSalePrice) / currentPrice) * 100
+);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-24 sm:pb-8">
@@ -230,14 +248,42 @@ export default function ProductDetailPage() {
         {/* Price */}
         <div className="flex items-baseline gap-3 mb-3">
           <span className="text-terracotta font-bold text-2xl sm:text-3xl">
-            {formatPrice(selectedArea.salePrice)}
+            {formatPrice(currentSalePrice)}
           </span>
           <span className="text-gray-400 text-base line-through">
-            {formatPrice(selectedArea.price)}
+            {/* {formatPrice(selectedArea.price)} */}
+            {formatPrice(currentPrice)}
           </span>
         </div>
 
         {/* Title */}
+        {selectedArea.warrantyOptions?.length > 0 && (
+  <div className="mb-4">
+    <p className="text-sm font-medium text-gray-700 mb-2">
+      Chọn gói bảo hành
+    </p>
+
+    <div className="flex gap-2 flex-wrap">
+      {selectedArea.warrantyOptions.map((option) => {
+        const active = selectedWarranty?.id === option.id;
+
+        return (
+          <button
+            key={option.id}
+            onClick={() => setSelectedWarrantyId(option.id)}
+            className={`px-4 py-2 rounded-xl border text-sm transition-all ${
+              active
+                ? "border-sage bg-sage text-white"
+                : "border-gray-200 text-gray-700 bg-white"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  </div>
+)}
         <h1 className="font-bold text-xl sm:text-2xl text-gray-800 mb-2 leading-tight">
           {selectedArea.title}
         </h1>
@@ -433,7 +479,8 @@ export default function ProductDetailPage() {
           <div className="flex-shrink-0">
             <p className="text-xs text-gray-500">Giá: </p>
             <p className="text-lg font-bold text-terracotta">
-              {formatPrice(selectedArea.salePrice)}
+              {/* {formatPrice(selectedArea.salePrice)} */}
+              {formatPrice(currentSalePrice)}
             </p>
           </div>
 

@@ -6,7 +6,7 @@ const MenuImages = ({ images }) => {
   const inView = useInView(ref, { once: true });
 
   return (
-    <div ref={ref} className="py-10 bg-gradient-to-b from-cream to-sage/5">
+    <div ref={ref} className="py-4 bg-gradient-to-b from-cream to-sage/5">
       <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-6">
         {images.map((img, i) => (
           <motion.div

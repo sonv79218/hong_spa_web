@@ -2,23 +2,31 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Bed, Sofa, ShowerHead, Armchair } from 'lucide-react';
-import img4 from "../../assets/images/space/Screenshot_45.png";
+import phong_tri_lieu from "../../assets/images/space/phong_tri_lieu.png";
+import phong_cho from "../../assets/images/space/phong_cho.png";
+import phong_tam from "../../assets/images/space/phong_tam.png";
+import phong_nghi from "../../assets/images/space/phong_nghi.png";
+
 
 const rooms = [
   {
     name: "Phòng trị liệu",
+    src: phong_tri_lieu,
     icon: Bed,
   },
   {
     name: "Phòng chờ",
+    src: phong_cho,
     icon: Sofa,
   },
   {
     name: "Phòng tắm",
+    src: phong_tam,
     icon: ShowerHead,
   },
   {
     name: "Phòng nghỉ",
+    src: phong_nghi,
     icon: Armchair,
   },
 ];
@@ -42,7 +50,7 @@ const RoomCard = ({ room, index }) => {
       {/* Large Image Container - Dominant visual */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
-          src={img4}
+          src={room.src}
           alt={room.name}
           className="w-full h-full object-cover transition-transform duration-700 will-change-transform"
         />
@@ -80,7 +88,7 @@ const SpaRoomsSection = () => {
   const isFooterInView = useInView(footerRef, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-cream to-sage/5 relative overflow-hidden">
+    <section className="py-10 sm:py-20 md:py-24 bg-gradient-to-b from-cream to-sage/5 relative overflow-hidden">
       {/* Top gradient transition from cream to sage */}
       <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-cream to-transparent" />
       

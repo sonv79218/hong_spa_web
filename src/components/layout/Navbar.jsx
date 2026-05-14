@@ -18,9 +18,11 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", label: "Trang chủ" },
     { path: "/promotions", label: "Khuyến mãi" },
-    { path: "/services", label: "Dịch vụ" },
+    { path: "/products", label: "Sản phẩm" },
+    { path: "/laser-hair-removal", label: "Chương trình" },
+    // { path: "/services", label: "Dịch vụ" },
     { path: "/menu", label: "Menu" },
-    { path: "/contact", label: "Liên hệ" },
+    // { path: "/contact", label: "Liên hệ" },
   ];
 
   return (

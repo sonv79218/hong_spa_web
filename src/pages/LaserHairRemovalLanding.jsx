@@ -14,6 +14,7 @@ export default function LaserHairRemovalLanding() {
   return (
     <div className="pb-16 sm:pb-0">
       <Navbar />
+      <div className="pt-10"></div>
       <HeroSection />
       <PainPoints />
       <TechnologySection />

@@ -13,13 +13,17 @@ export default function Home() {
   return (
     <div>
       <Navbar />
+      <div className='pt-22'></div>
       <HeroSection />
       <AboutSection />
-      <ServicePreview />
-      <TeamSection />
+      {/* <ServicePreview /> */}
+
+      {/* <TeamSection /> */}
       <SpaRoomsSection />
       <GallerySection />
-      <CommitmentSection />
+      {/* <CommitmentSection /> */}
+            {/* <div className="absolute top-0 left-0 right-0 h-5 bg-gradient-to-b from-cream to-sage" /> */}
+      
       <Footer />
     </div>
   );

@@ -7,7 +7,7 @@ const MenuHero = () => {
   const isHeroInView = useInView(heroRef, { once: true });
 
   return (
-    <div ref={heroRef} className="relative py-5 sm:py-20 md:py-10 bg-gradient-to-b from-sage/10 via-cream to-cream overflow-hidden">
+    <div ref={heroRef} className="relative pt-5 sm:py-20 md:py-10 bg-gradient-to-b from-sage/10 via-cream to-cream overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-sage/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
 

@@ -5,6 +5,7 @@ import Footer from "../components/layout/Footer";
 import { offers } from "../data/offers";
 import { Link } from "react-router-dom";
 import { Gift, Percent, Calendar, Sparkles, ArrowRight } from "lucide-react";
+import ServicePreview from "../components/home/ServicePreview";
 
 const PromotionPage = () => {
   const promotions = offers.filter((item) => item.promotion !== undefined);
@@ -20,59 +21,11 @@ const PromotionPage = () => {
     <section className="min-h-screen bg-cream pt-16" style={{ WebkitFontSmoothing: 'antialiased' }}>
       <Navbar />
 
-      {/* Hero Section */}
-      <div 
-        ref={heroRef}
-        className="relative py-16 sm:py-20 md:py-28 bg-gradient-to-b from-sage/10 via-cream to-cream overflow-hidden"
-      >
-        {/* Background decorations */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-sage/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-center"
-          >
-            {/* Label */}
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-8 h-px bg-terracotta" />
-              <span className="text-terracotta text-sm tracking-[0.2em] uppercase font-medium">
-                Ưu đãi
-              </span>
-              <span className="w-8 h-px bg-terracotta" />
-            </div>
-
-            <h1 
-              className="font-serif text-4xl sm:text-5xl md:text-6xl text-sage font-bold mb-4 md:mb-6"
-              style={{ transform: 'translateZ(0)' }}
-            >
-              Chương trình khuyến mãi
-            </h1>
-
-            <p 
-              className="text-sage/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-              style={{ transform: 'translateZ(0)' }}
-            >
-              Cùng Hong Spa trải nghiệm các chương trình ưu đãi hấp dẫn trong tháng này
-            </p>
-
-            {/* Decorative element */}
-            <div className="flex items-center justify-center gap-2 mt-8">
-              <span className="w-16 h-px bg-gradient-to-r from-transparent to-terracotta/30" />
-              <span className="text-terracotta/50 text-lg">✦</span>
-              <span className="w-16 h-px bg-gradient-to-l from-transparent to-terracotta/30" />
-            </div>
-          </motion.div>
-        </div>
-      </div>
 
       {/* Promotions List */}
       <div 
         ref={listRef}
-        className="py-16 sm:py-20 md:py-24 bg-cream relative overflow-hidden"
+        className="pt-12 sm:py-20 md:py-24 bg-cream relative overflow-hidden"
       >
         <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cream to-transparent" />
 
@@ -219,55 +172,9 @@ const PromotionPage = () => {
           </div>
         </div>
       </div>
-
+      <ServicePreview />
       {/* CTA Section */}
-      <div 
-        ref={ctaRef}
-        className="py-16 sm:py-20 md:py-28 bg-sage relative overflow-hidden"
-      >
-        {/* Background decorations */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-terracotta/30 to-transparent" />
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-terracotta/10 rounded-full blur-3xl -translate-x-1/2" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-cream/10 rounded-full blur-3xl translate-x-1/3" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-          >
-            <h2 
-              className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold mb-4 md:mb-6"
-              style={{ transform: 'translateZ(0)' }}
-            >
-              Đừng bỏ lỡ ưu đãi
-            </h2>
-            
-            <p 
-              className="text-white/80 text-base sm:text-lg md:text-xl max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed"
-              style={{ transform: 'translateZ(0)' }}
-            >
-              Đặt lịch ngay hôm nay để hưởng ưu đãi dành riêng cho bạn
-            </p>
-
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-terracotta text-white rounded-full font-medium text-base md:text-lg shadow-lg shadow-terracotta/30 hover:shadow-xl hover:shadow-terracotta/40 transition-all duration-300"
-            >
-              <span>Đặt lịch ngay</span>
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-
-            {/* Decorative element */}
-            <div className="flex items-center justify-center gap-2 mt-10 md:mt-12">
-              <span className="w-16 h-px bg-gradient-to-r from-transparent to-white/30" />
-              <span className="text-white/40 text-lg">✦</span>
-              <span className="w-16 h-px bg-gradient-to-l from-transparent to-white/30" />
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
+  
       <Footer />
     </section>
   );

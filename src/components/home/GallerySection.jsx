@@ -2,29 +2,24 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Camera, Maximize2 } from 'lucide-react';
-import img1 from "../../assets/images/space/Screenshot_1.png";
-import img2 from "../../assets/images/space/Screenshot_2.png";
-import img3 from "../../assets/images/space/Screenshot_45.png";
-import img4 from "../../assets/images/space/Screenshot_45.png";
+import may_triet_long from "../../assets/images/space/may_triet_long.png";
+import thiet_bi_cham_soc_body from "../../assets/images/space/thiet_bi_cham_soc_body.png";
+import may_cham_soc_da_mat from "../../assets/images/space/may_cham_soc_da_mat.png";
+
 
 const gallery = [
   {
-    img: img1,
+    img: may_cham_soc_da_mat,
     title: "Máy chăm sóc da mặt",
     desc: "Thiết bị làm sạch sâu và tái tạo làn da chuyên nghiệp.",
   },
   {
-    img: img2,
-    title: "Máy massage công nghệ cao",
-    desc: "Hỗ trợ thư giãn cơ, giảm căng thẳng toàn thân.",
-  },
-  {
-    img: img3,
+    img: may_triet_long,
     title: "Khu trị liệu da",
     desc: "Không gian điều trị da an toàn, tiêu chuẩn spa.",
   },
   {
-    img: img4,
+    img: thiet_bi_cham_soc_body,
     title: "Thiết bị chăm sóc body",
     desc: "Hỗ trợ giảm béo, làm săn chắc cơ thể.",
   },
@@ -92,10 +87,12 @@ const GallerySection = () => {
   const isHeaderInView = useInView(headerRef, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-sage relative overflow-hidden">
+    <section className="pt-5 sm:py-20 md:py-24 bg-sage relative overflow-hidden">
       {/* Top gradient transition from sage/5 */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-sage/5 to-sage" />
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cream to-sage" />
       
+      {/* <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-sage/5 to-sage" /> */}
+      <div className='pt-5'></div>
       {/* Background decorations */}
       <div className="absolute top-1/2 left-0 w-64 h-64 bg-terracotta/10 rounded-full blur-3xl -translate-x-1/2" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-cream/10 rounded-full blur-3xl translate-x-1/3" />
@@ -145,7 +142,7 @@ const GallerySection = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-12 md:mt-16"
         >
-          <a 
+          {/* <a 
             href="#gallery"
             className="group inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-cream/30 text-cream rounded-full font-medium hover:bg-cream hover:text-sage transition-all duration-300"
           >
@@ -153,7 +150,7 @@ const GallerySection = () => {
             <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </a> */}
         </motion.div>
       </div>
     </section>

@@ -16,7 +16,7 @@ const combos = offers.map((item) => ({
 }));
 const MenuPage = () => {
   return (
-    <section className="min-h-screen bg-cream pt-16">
+    <section className="min-h-screen bg-cream pt-0">
       <Navbar />
 
       <MenuHero />

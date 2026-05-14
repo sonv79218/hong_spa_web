@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Search, SlidersHorizontal, ShoppingCart, Heart, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { products } from "../data/productsData";
@@ -13,7 +13,15 @@ export default function ProductPage() {
   const [page, setPage] = useState(1);
   const [showSortModal, setShowSortModal] = useState(false);
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 10;
+  const productsRef = useRef(null);
+
+  const scrollToProducts = () => {
+    productsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
 
   const categories = [
     { id: "all", label: "Tất cả" },
@@ -71,20 +79,22 @@ export default function ProductPage() {
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
     setPage(1);
+    scrollToProducts();
   };
 
   const handleSortChange = (sortId) => {
     setSortBy(sortId);
     setShowSortModal(false);
     setPage(1);
+    scrollToProducts();
   };
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 sm:pb-0">
-      {/* <Navbar /> */}
+      <Navbar />
 
       {/* Mobile Header - Sticky */}
-      <div className="sticky top-0 z-30 bg-white shadow-sm border-b border-sage/10">
+      <div className="pt-23 top-0 z-30 bg-cream shadow-sm border-b border-sage/10">
         {/* Search Bar */}
         <div className="px-4 py-3">
           <div className="relative">
@@ -96,6 +106,7 @@ export default function ProductPage() {
               onChange={(e) => {
                 setSearchTerm(e.target.value);
                 setPage(1);
+                scrollToProducts();
               }}
               className="w-full pl-10 pr-10 py-3 bg-gray-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-sage/30 transition-all"
             />
@@ -161,6 +172,7 @@ export default function ProductPage() {
         </p>
 
         {/* Products Grid - 2 columns on mobile */}
+        <div ref={productsRef}>
         {displayedProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
             {displayedProducts.map((product) => (
@@ -176,12 +188,13 @@ export default function ProductPage() {
             <p className="text-gray-400 text-sm mt-1">Thử tìm kiếm với từ khóa khác</p>
           </div>
         )}
+        </div>
 
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-6 sm:mt-8">
             <button
-              onClick={() => setPage(Math.max(1, page - 1))}
+              onClick={() => { setPage(Math.max(1, page - 1)); scrollToProducts(); }}
               disabled={page === 1}
               className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all border border-sage/10"
             >
@@ -192,7 +205,7 @@ export default function ProductPage() {
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                 <button
                   key={p}
-                  onClick={() => setPage(p)}
+                  onClick={() => { setPage(p); scrollToProducts(); }}
                   className={`w-10 h-10 rounded-xl text-sm font-medium transition-all ${
                     page === p
                       ? "bg-sage text-white shadow-sm"
@@ -205,7 +218,7 @@ export default function ProductPage() {
             </div>
 
             <button
-              onClick={() => setPage(Math.min(totalPages, page + 1))}
+              onClick={() => { setPage(Math.min(totalPages, page + 1)); scrollToProducts(); }}
               disabled={page === totalPages}
               className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-gray-600 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all border border-sage/10"
             >

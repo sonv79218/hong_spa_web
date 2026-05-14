@@ -12,7 +12,7 @@ const Footer = () => {
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.657!2d105.95!3d21.13!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA3JzQ4LjAiTiAxMDXCsDU3JzA0LjAiRQ!5e0!3m2!1svi!2s!4v1600000000000!5m2!1svi!2s&q=Khu+phố+Thanh+Bình+Đồng+Nguyên+Bắc+Ninh+Hong+Spa";
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 bg-sage relative overflow-hidden">
+    <section id="contact" className="py-8 sm:py-20 md:py-24 bg-sage relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
