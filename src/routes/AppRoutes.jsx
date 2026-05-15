@@ -10,6 +10,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import LaserHairRemovalLanding from "../pages/LaserHairRemovalLanding";
 import ProductPage from "../pages/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 
 export default function AppRoutes() {
@@ -27,6 +28,7 @@ export default function AppRoutes() {
           <Route path="/laser-hair-removal" element={<LaserHairRemovalLanding />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

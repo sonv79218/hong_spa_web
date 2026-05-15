@@ -1,57 +1,43 @@
 import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import Logo from "../common/Logo";
 
 const Navbar = () => {
-  // const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setIsScrolled(window.scrollY > 50);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
+  const location = useLocation();
 
   const navLinks = [
     { path: "/", label: "Trang chủ" },
     { path: "/promotions", label: "Khuyến mãi" },
     { path: "/products", label: "Sản phẩm" },
     { path: "/laser-hair-removal", label: "Chương trình" },
-    // { path: "/services", label: "Dịch vụ" },
     { path: "/menu", label: "Menu" },
-    // { path: "/contact", label: "Liên hệ" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream shadow-lg shadow-sage/5 py-3"
-      // className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      //   isScrolled
-      //     ? "bg-cream/95 backdrop-blur-md shadow-lg shadow-sage/5 py-2"
-      //     : "bg-transparent py-4"
-      // }`}
-    
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream shadow-lg shadow-sage/5 py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-
-          {location.pathname === "/" ? (
-  <a
-    href="#heroSection"
-    className="font-serif text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
-  >
-    Hong Spa
-  </a>
-) : (
-  <Link
-    to="/"
-    className="font-serif text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
-  >
-    Hong Spa
-  </Link>
-)}
+          {/* Logo + Brand */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Logo size="sm" className="h-8 sm:h-10" />
+            {location.pathname === "/" ? (
+              <a
+                href="#heroSection"
+                className="font-serif text-xl sm:text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
+              >
+                Hong Spa
+              </a>
+            ) : (
+              <Link
+                to="/"
+                className="font-serif text-xl sm:text-2xl text-sage font-bold hover:text-terracotta transition-colors duration-300 cursor-glow"
+              >
+                Hong Spa
+              </Link>
+            )}
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">

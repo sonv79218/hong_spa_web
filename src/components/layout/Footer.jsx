@@ -1,6 +1,20 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Phone, MessageCircle, ArrowRight, Star, Shield, Heart, MapPin, Clock, Navigation, CarTaxiFront } from 'lucide-react';
+import { Phone, MessageCircle, ArrowRight, Star, Shield, Heart, MapPin, Clock, Navigation } from 'lucide-react';
+import Logo from '../common/Logo';
+
+const FacebookIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+  </svg>
+);
 
 const Footer = () => {
   const ref = useRef(null);
@@ -8,6 +22,7 @@ const Footer = () => {
 
   const address = "Khu phố Thanh Bình, Đồng Nguyên, Bắc Ninh";
   const phone = "0392828888";
+  const facebookUrl = "https://www.facebook.com/profile.php?id=100083175039911&locale=vi_VN";
   const googleMapsUrl = "https://www.google.com/maps/search/Hong+Spa+Khu+phố+Thanh+Bình+Đồng+Nguyên+Bắc+Ninh";
   const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.657!2d105.95!3d21.13!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA3JzQ4LjAiTiAxMDXCsDU3JzA0LjAiRQ!5e0!3m2!1svi!2s!4v1600000000000!5m2!1svi!2s&q=Khu+phố+Thanh+Bình+Đồng+Nguyên+Bắc+Ninh+Hong+Spa";
 
@@ -58,14 +73,14 @@ const Footer = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-10">
             <motion.a
               href={`tel:${phone}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-sage px-10 py-4 rounded-full text-lg font-semibold hover:bg-cream transition-all duration-300 shadow-xl hover:shadow-2xl"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-sage px-6 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-cream transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
-              <Phone size={22} />
+              <Phone size={20} />
               Gọi ngay
             </motion.a>
 
@@ -75,10 +90,22 @@ const Footer = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0068FF] text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-[#0052CC] transition-all duration-300 shadow-xl hover:shadow-2xl"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#0068FF] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#0052CC] transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
-              <MessageCircle size={22} />
+              <MessageCircle size={20} />
               Chat Zalo
+            </motion.a>
+
+            <motion.a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#1877F2] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#166FE5] transition-all duration-300 shadow-xl hover:shadow-2xl"
+            >
+              <FacebookIcon size={20} />
+              Facebook
             </motion.a>
           </div>
 
@@ -125,8 +152,12 @@ const Footer = () => {
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8">
           <div className="grid md:grid-cols-2 gap-8 items-start">
             {/* INFO */}
-            <div className="space-y-5">
-              <h3 className="font-serif text-2xl font-bold text-white">Hong Spa</h3>
+            <div className="space-y-4">
+              {/* Logo + Brand */}
+              <div className="flex items-center gap-2">
+                <Logo size="sm" className="h-6" />
+                <h3 className="font-serif text-xl font-bold text-white">Hong Spa</h3>
+              </div>
               
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-terracotta/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -152,11 +183,6 @@ const Footer = () => {
                   >
                     0392828888
                   </a>
-                </div>
-              </div>
-                         <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-terracotta/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Phone size={20} className="text-terracotta" />
                 </div>
               </div>
 

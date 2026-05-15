@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Camera, Maximize2 } from 'lucide-react';
-import may_triet_long from "../../assets/images/space/may_triet_long.png";
-import thiet_bi_cham_soc_body from "../../assets/images/space/thiet_bi_cham_soc_body.png";
-import may_cham_soc_da_mat from "../../assets/images/space/may_cham_soc_da_mat.png";
+import may_triet_long from "../../assets/images/equipment/may_triet_long.png";
+import thiet_bi_cham_soc_body from "../../assets/images/equipment/thiet_bi_cham_soc_body.png";
+import may_cham_soc_da_mat from "../../assets/images/equipment/may_cham_soc_da_mat.png";
 
 
 const gallery = [

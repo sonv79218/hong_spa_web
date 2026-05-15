@@ -9,38 +9,108 @@ const getAdvancedImg = (name) => getImg("picture_advanced", name);
 
 // ========== CENTRALIZED PRICING CONFIG ==========
 const BODY_SERVICE_PRICING = {
-  "Massage body đá nóng": 300000,
-  "Massage body đá nóng xông hơi": 400000,
-  "Massage lưng": 150000,
-  "Massage chân": 150000,
-  "Massage cổ vai gáy": 150000,
-  "Tẩy tế bào chết body + đắp dưỡng": 300000,
-  "Tắm trắng nhả nắng": 500000
+  "Massage body đá nóng": {
+    price: 500000,
+    salePrice: 300000
+  },
+  "Massage body đá nóng xông hơi": {
+    price: 600000,
+    salePrice: 400000
+  },
+  "Massage lưng": {
+    price: 250000,
+    salePrice: 150000
+  },
+  "Massage chân": {
+    price: 250000,
+    salePrice: 150000
+  },
+  "Massage cổ vai gáy": {
+    price: 250000,
+    salePrice: 150000
+  },
+  "Tẩy tế bào chết body + đắp dưỡng": {
+    price: 400000,
+    salePrice: 300000
+  },
+  "Tắm trắng nhả nắng": {
+    price: 700000,
+    salePrice: 500000
+  }
 };
 
 const FACIAL_SERVICE_PRICING = {
-  "Chăm sóc da cơ bản": 150000,
-  "Chăm sóc da chuyên sâu": 250000,
-  "Chăm sóc da mụn chuyên sâu": 250000,
-  "Cấy tế bào gốc": 350000,
-  "Nâng cơ xóa nhăn": 400000,
-  "Trẻ hóa da Carbon Toning": 400000,
-  "Cấp ẩm phục hồi Christina": 450000,
-  "Deep Clean Skin": 450000
+  "Chăm sóc da cơ bản": {
+    price: 250000,
+    salePrice: 150000
+  },
+  "Chăm sóc da chuyên sâu": {
+    price: 350000,
+    salePrice: 250000
+  },
+  "Chăm sóc da mụn chuyên sâu": {
+    price: 350000,
+    salePrice: 250000
+  },
+  "Cấy tế bào gốc": {
+    price: 500000,
+    salePrice: 350000
+  },
+  "Nâng cơ xóa nhăn": {
+    price: 550000,
+    salePrice: 400000
+  },
+  "Trẻ hóa da Carbon Toning": {
+    price: 550000,
+    salePrice: 400000
+  },
+  "Cấp ẩm phục hồi Christina": {
+    price: 650000,
+    salePrice: 450000
+  },
+  "Deep Clean Skin": {
+    price: 650000,
+    salePrice: 450000
+  }
 };
-
 const ADVANCED_SKIN_PRICING = {
-  "Chemical Peel Mandelic": 700000,
-  "Detox thanh lọc da DR.BELTER": 700000,
-  "Peel A trẻ hóa da": 700000,
-  "Vi tảo Canxi": 800000,
-  "Peel Recovery": 900000,
-  "Mesotech căng bóng": 900000,
-  "Peel Max White": 1500000,
-  "Larimedical Peel": 1500000,
-  "Multy Peel": 1500000
+  "Chemical Peel Mandelic": {
+    price: 1000000,
+    salePrice: 700000
+  },
+  "Detox thanh lọc da DR.BELTER": {
+    price: 1000000,
+    salePrice: 700000
+  },
+  "Peel A trẻ hóa da": {
+    price: 1000000,
+    salePrice: 700000
+  },
+  "Vi tảo Canxi": {
+    price: 1200000,
+    salePrice: 800000
+  },
+  "Peel Recovery": {
+    price: 1300000,
+    salePrice: 900000
+  },
+  "Mesotech căng bóng": {
+    price: 1300000,
+    salePrice: 900000
+  },
+  "Peel Max White": {
+    price: 2000000,
+    salePrice: 1500000
+  },
+  "Larimedical Peel": {
+    price: 2000000,
+    salePrice: 1500000
+  },
+  "Multy Peel": {
+    price: 2000000,
+    salePrice: 1500000
+  }
 };
-
 // Helper function to create massage/body service
 const createBodyService = ({
   id,
@@ -70,8 +140,8 @@ const createBodyService = ({
   faq: [],
   duration,
   sessions: "1 buổi",
-  price: BODY_SERVICE_PRICING[title],
-  salePrice: BODY_SERVICE_PRICING[title],
+  price: BODY_SERVICE_PRICING[title].price,
+  salePrice: BODY_SERVICE_PRICING[title].salePrice,
   sold: 0,
   hot: false,
   rating: 4.9,
@@ -108,8 +178,8 @@ const createFacialService = ({
   faq: [],
   duration,
   sessions: "1 buổi",
-  price: FACIAL_SERVICE_PRICING[title],
-  salePrice: FACIAL_SERVICE_PRICING[title],
+  price: FACIAL_SERVICE_PRICING[title].price,
+  salePrice: FACIAL_SERVICE_PRICING[title].salePrice,
   sold: 0,
   hot,
   rating: 4.9,
@@ -147,8 +217,8 @@ const createAdvancedSkinService = ({
   faq: [],
   duration,
   sessions: "1 buổi",
-  price: ADVANCED_SKIN_PRICING[title],
-  salePrice: ADVANCED_SKIN_PRICING[title],
+  price: ADVANCED_SKIN_PRICING[title].price,
+  salePrice: ADVANCED_SKIN_PRICING[title].salePrice,
   sold: 0,
   hot,
   rating: 4.9,
@@ -258,7 +328,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Nách"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Nách"].oneYear.salePrice,
     sold: 157,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 52,
     image: getTrietImg("triet_nach_nam"),
@@ -290,7 +360,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Nách"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Nách"].oneYear.salePrice,
     sold: 289,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 89,
     image: getTrietImg("triet_nach_nu"),
@@ -324,7 +394,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Bikini"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Bikini"].oneYear.salePrice,
     sold: 178,
-    hot: true,
+    hot: false,
     rating: 4.8,
     reviewCount: 67,
     image: getTrietImg("triet_bi"),
@@ -353,7 +423,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Chân"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Chân"].oneYear.salePrice,
     sold: 124,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 41,
     image: getTrietImg("ca_chan_nam"),
@@ -380,7 +450,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Chân"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Chân"].oneYear.salePrice,
     sold: 234,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 78,
     image: getTrietImg("ca_chan_nu"),
@@ -436,7 +506,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Cả Tay"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Cả Tay"].oneYear.salePrice,
     sold: 156,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 54,
     image: getTrietImg("cang_tay"),
@@ -494,7 +564,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Bụng"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Bụng"].oneYear.salePrice,
     sold: 89,
-    hot: true,
+    hot: false,
     rating: 4.8,
     reviewCount: 31,
     image: getTrietImg("triet_bung_nu"),
@@ -557,7 +627,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Râu & Cằm"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Râu & Cằm"].oneYear.salePrice,
     sold: 112,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 45,
     image: getTrietImg("triet_rau_quai_non_nam"),
@@ -586,7 +656,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Mặt"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Mặt"].oneYear.salePrice,
     sold: 143,
-    hot: true,
+    hot: false,
     rating: 4.8,
     reviewCount: 52,
     image: getTrietImg("ca_mat_nu"),
@@ -624,7 +694,7 @@ export const products = [
     price: TRIET_LONG_PRICING["Toàn thân"].oneYear.price,
     salePrice: TRIET_LONG_PRICING["Toàn thân"].oneYear.salePrice,
     sold: 45,
-    hot: true,
+    hot: false,
     rating: 4.9,
     reviewCount: 18,
     image: getTrietImg("triet_nach_nu"),
@@ -694,7 +764,8 @@ export const products = [
       "Nghỉ ngơi ít nhất 1 giờ sau dịch vụ"
     ],
     duration: "60 phút",
-    imageName: "massage_body_xong_hoi"
+    imageName: "massage_body_xong_hoi",
+    hot: true
   }),
 
   createBodyService({
@@ -943,6 +1014,7 @@ export const products = [
       "Thoa kem chống nắng không nhờn dầu",
       "Rửa mặt 2 lần/ngày"
     ],
+    hot: true,
     duration: "60 phút",
     imageName: "cham_soc_da_mun"
   }),
@@ -1139,7 +1211,8 @@ export const products = [
       "Nên thực hiện 4-6 buổi cách 2-3 tuần"
     ],
     duration: "60 phút",
-    imageName: "chemical_peel_mandelic"
+    imageName: "chemical_peel_mandelic",
+    hot: true
   }),
 
   createAdvancedSkinService({
@@ -1170,7 +1243,8 @@ export const products = [
       "Tránh phơi nắng sau liệu trình"
     ],
     duration: "60 phút",
-    imageName: "detox_dr_belter"
+    imageName: "detox_dr_belter",
+    hot: true
   }),
 
   createAdvancedSkinService({

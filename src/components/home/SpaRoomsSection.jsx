@@ -6,13 +6,14 @@ import phong_tri_lieu from "../../assets/images/space/phong_tri_lieu.png";
 import phong_cho from "../../assets/images/space/phong_cho.png";
 import phong_tam from "../../assets/images/space/phong_tam.png";
 import phong_nghi from "../../assets/images/space/phong_nghi.png";
+import khong_gian_spa from "../../assets/images/space/khong_gian_spa.png";
 
 
 const rooms = [
   {
-    name: "Phòng trị liệu",
-    src: phong_tri_lieu,
-    icon: Bed,
+    name: "Không gian spa",
+    src: khong_gian_spa,
+    // icon: Bed,
   },
   {
     name: "Phòng chờ",

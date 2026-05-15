@@ -395,6 +395,13 @@
   transform: translateY(20px);
 }
 
+/* ========== iPhone Safe Area Padding ========== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
 /* ========== Cursor Glow Effect ========== */
 .cursor-glow {
   cursor: pointer;

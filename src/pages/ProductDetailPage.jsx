@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Star, Clock, Users, ShieldCheck, Check, MessageCircle, ChevronDown, Loader2 } from "lucide-react";
 import { products } from "../data/productsData";
 import ProductCard from "../components/ProductCard";
+import Footer from "../components/layout/Footer";
 
 const formatPrice = (price) =>
   new Intl.NumberFormat("vi-VN").format(price) + "đ";
@@ -504,6 +505,7 @@ const discountPercent = Math.round(
           <span>Đặt lịch ngay</span>
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

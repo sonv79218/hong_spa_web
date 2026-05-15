@@ -28,6 +28,8 @@ export default function ProductPage() {
     { id: "hot", label: "Hot" },
     { id: "triet-long", label: "Triệt lông" },
     { id: "cham-soc-da", label: "Chăm sóc da" },
+    { id: "dieu-tri-da", label: "Điều trị da" },
+    { id: "massage-body", label: "Massage body" },
   ];
 
   const sortOptions = [
