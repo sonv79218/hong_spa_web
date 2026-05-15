@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Bed, Sofa, ShowerHead, Armchair } from 'lucide-react';
-import phong_tri_lieu from "../../assets/images/space/phong_tri_lieu.png";
+// import phong_tri_lieu from "../../assets/images/space/phong_tri_lieu.png";
 import phong_cho from "../../assets/images/space/phong_cho.png";
 import phong_tam from "../../assets/images/space/phong_tam.png";
 import phong_nghi from "../../assets/images/space/phong_nghi.png";
