@@ -664,48 +664,48 @@ export const products = [
   },
 
   // ========== TRIỆT FULL BODY ==========
-  {
-    id: "triet-full-body",
-    slug: "triet-long-full-body",
-    title: "Triệt lông Full Body",
-    category: "triet-long",
-    group: "triet-full",
-    area: "Toàn thân",
-    shortDesc: "Triệt lông toàn thân - tiết kiệm nhất, da mịn màng toàn diện.",
-    desc: "Triệt lông toàn thân bằng công nghệ diode laser cao cấp từ Hàn Quốc. Bao gồm tất cả các vùng: nách, chân, tay, lưng, bụng, bikini. Tiết kiệm đến 40% so với triệt từng vùng.",
-    benefits: ["Triệt toàn thân", "Tiết kiệm 40%", "Da mịn màng toàn diện", "Tự tin 100%"],
-    suitableFor: ["Nam", "Nữ"],
-    process: ["Tư vấn liệu trình", "Triệt laser toàn thân", "Dưỡng da", "Theo dõi kết quả"],
-    notes: ["Nhiều buổi triệt", "Cần kiên nhẫn 6-12 tháng", "Tránh phơi nắng"],
-    faq: [
-      {
-        question: "Triệt full body mất bao lâu?",
-        answer: "Thông thường cần 10-15 buổi, mỗi buổi 60-90 phút, khoảng cách 3-4 tuần."
-      },
-      {
-        question: "Triệt full body có đau không?",
-        answer: "Cảm giác châm chích nhẹ, có thể ủ tê cho các vùng nhạy cảm."
-      }
-    ],
-    duration: "60-90 phút",
-    sessions: "10-15 buổi",
-    warrantyOptions: createWarrantyOptionsByArea("Toàn thân"),
-    defaultWarranty: "1-nam",
-    price: TRIET_LONG_PRICING["Toàn thân"].oneYear.price,
-    salePrice: TRIET_LONG_PRICING["Toàn thân"].oneYear.salePrice,
-    sold: 45,
-    hot: false,
-    rating: 4.9,
-    reviewCount: 18,
-    image: getTrietImg("triet_nach_nu"),
-    images: [
-      getTrietImg("triet_nach_nu"),
-      getTrietImg("ca_chan_nu"),
-      getTrietImg("cang_tay"),
-      getTrietImg("triet_bung_nu"),
-      getTrietImg("triet_bi"),
-    ],
-  },
+  // {
+  //   id: "triet-full-body",
+  //   slug: "triet-long-full-body",
+  //   title: "Triệt lông Full Body",
+  //   category: "triet-long",
+  //   group: "triet-full",
+  //   area: "Toàn thân",
+  //   shortDesc: "Triệt lông toàn thân - tiết kiệm nhất, da mịn màng toàn diện.",
+  //   desc: "Triệt lông toàn thân bằng công nghệ diode laser cao cấp từ Hàn Quốc. Bao gồm tất cả các vùng: nách, chân, tay, lưng, bụng, bikini. Tiết kiệm đến 40% so với triệt từng vùng.",
+  //   benefits: ["Triệt toàn thân", "Tiết kiệm 40%", "Da mịn màng toàn diện", "Tự tin 100%"],
+  //   suitableFor: ["Nam", "Nữ"],
+  //   process: ["Tư vấn liệu trình", "Triệt laser toàn thân", "Dưỡng da", "Theo dõi kết quả"],
+  //   notes: ["Nhiều buổi triệt", "Cần kiên nhẫn 6-12 tháng", "Tránh phơi nắng"],
+  //   faq: [
+  //     {
+  //       question: "Triệt full body mất bao lâu?",
+  //       answer: "Thông thường cần 10-15 buổi, mỗi buổi 60-90 phút, khoảng cách 3-4 tuần."
+  //     },
+  //     {
+  //       question: "Triệt full body có đau không?",
+  //       answer: "Cảm giác châm chích nhẹ, có thể ủ tê cho các vùng nhạy cảm."
+  //     }
+  //   ],
+  //   duration: "60-90 phút",
+  //   sessions: "10-15 buổi",
+  //   warrantyOptions: createWarrantyOptionsByArea("Toàn thân"),
+  //   defaultWarranty: "1-nam",
+  //   price: TRIET_LONG_PRICING["Toàn thân"].oneYear.price,
+  //   salePrice: TRIET_LONG_PRICING["Toàn thân"].oneYear.salePrice,
+  //   sold: 45,
+  //   hot: false,
+  //   rating: 4.9,
+  //   reviewCount: 18,
+  //   image: getTrietImg("triet_nach_nu"),
+  //   images: [
+  //     getTrietImg("triet_nach_nu"),
+  //     getTrietImg("ca_chan_nu"),
+  //     getTrietImg("cang_tay"),
+  //     getTrietImg("triet_bung_nu"),
+  //     getTrietImg("triet_bi"),
+  //   ],
+  // },
 
   // ========== MASSAGE BODY ==========
   createBodyService({

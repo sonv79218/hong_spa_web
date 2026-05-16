@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const navLinks = [
     { path: "/", label: "Trang chủ" },
-    { path: "/promotions", label: "Khuyến mãi" },
+    // { path: "/promotions", label: "Khuyến mãi" },
     { path: "/products", label: "Sản phẩm" },
-    { path: "/laser-hair-removal", label: "Chương trình" },
+    // { path: "/laser-hair-removal", label: "Chương trình" },
     { path: "/menu", label: "Menu" },
   ];
 
